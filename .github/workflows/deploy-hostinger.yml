@@ -1,0 +1,37 @@
+name: Deploy Static Site to Hostinger (Legacy FTP)
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hostinger-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify static site entrypoint
+        run: test -f index.html
+
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          server-dir: /public_html/
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/node_modules/**
+            DEPLOYMENT.md
+            OQorg.html
+            recolored_logo_OQ.svg
+            orlando-qazaqtary-logo-recolored.svg

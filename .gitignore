@@ -1,0 +1,7 @@
+.DS_Store
+
+# Local editor settings
+.vscode/
+
+# Optional local notes
+*.log

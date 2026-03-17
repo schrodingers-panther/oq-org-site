@@ -1,0 +1,100 @@
+name: Deploy OQ.org HTML to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - OQorg.html
+      - index.html
+      - *.png
+      - *.svg
+      - .github/workflows/deploy-hostinger-vps.yml
+      - DEPLOYMENT.md
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hostinger-vps-production
+  cancel-in-progress: true
+
+env:
+  SOURCE_FILE: OQorg.html
+  OUTPUT_DIR: .deploy_oqorg
+  REMOTE_NAME: index.html
+  REMOTE_DIR: ${{ secrets.OQORG_REMOTE_DIR || '/var/www/orlandoqazaqtary.org/public' }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify site source files
+        run: |
+          test -f "${{ env.SOURCE_FILE }}"
+          test -f OQ_logo_clean_social_1024_recolored.png
+
+      - name: Prepare HTML artifact
+        shell: bash
+        run: |
+          rm -rf "${{ env.OUTPUT_DIR }}"
+          mkdir -p "${{ env.OUTPUT_DIR }}"
+          cp "${{ env.SOURCE_FILE }}" "${{ env.OUTPUT_DIR }}/${{ env.REMOTE_NAME }}"
+          cp "${{ env.SOURCE_FILE }}" "${{ env.OUTPUT_DIR }}/OQorg.html"
+          cp -f OQ_logo_clean_social_1024_recolored.png "${{ env.OUTPUT_DIR }}/"
+          for f in *.svg *.png; do
+            if [ -f "$f" ]; then
+              cp -f "$f" "${{ env.OUTPUT_DIR }}/" || true
+            fi
+          done
+
+      - name: Ensure remote directory exists
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          port: ${{ secrets.HOSTINGER_PORT || '22' }}
+          script: |
+            set -e
+            mkdir -p "${{ env.REMOTE_DIR }}"
+
+      - name: Upload to Hostinger VPS via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          port: ${{ secrets.HOSTINGER_PORT || '22' }}
+          source: ${{ env.OUTPUT_DIR }}
+          target: ${{ env.REMOTE_DIR }}
+          strip_components: 1
+          overwrite: true
+
+      - name: Verify deployed files on VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          port: ${{ secrets.HOSTINGER_PORT || '22' }}
+          script: |
+            set -e
+            ls -la "${{ env.REMOTE_DIR }}"
+            test -f "${{ env.REMOTE_DIR }}/${{ env.REMOTE_NAME }}"
+            grep -m1 -i "<title>" "${{ env.REMOTE_DIR }}/${{ env.REMOTE_NAME }}" || true
+            test -f "${{ env.REMOTE_DIR }}/OQ_logo_clean_social_1024_recolored.png"
+
+      - name: Cleanup nested deploy folder on VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          port: ${{ secrets.HOSTINGER_PORT || '22' }}
+          script: |
+            set -e
+            rm -rf "${{ env.REMOTE_DIR }}/${{ env.OUTPUT_DIR }}"
+            test ! -d "${{ env.REMOTE_DIR }}/${{ env.OUTPUT_DIR }}"
