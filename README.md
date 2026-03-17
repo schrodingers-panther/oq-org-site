@@ -12,7 +12,7 @@ This folder is intended to live in its **own GitHub repository** and deploy to a
 
 ### Required GitHub Actions secrets
 
-- `HOSTINGER_HOST`
+- `HOSTINGER_HOST` (set to `srv521287.hstgr.cloud` or `77.37.86.202`)
 - `HOSTINGER_USER`
 - `HOSTINGER_PORT` (optional; default `22`)
 - `HOSTINGER_SSH_KEY`

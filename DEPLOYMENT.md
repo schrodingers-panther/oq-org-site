@@ -91,14 +91,22 @@ In GitHub, open `Settings` -> `Secrets and variables` -> `Actions` and add:
 
 For VPS deploy (SSH), add these secrets:
 
-- `HOSTINGER_HOST` (VPS IP/hostname, example: `77.37.86.202`)
+- `HOSTINGER_HOST` (VPS hostname/IP: `srv521287.hstgr.cloud` / `77.37.86.202`)
 - `HOSTINGER_USER` (SSH username, example: `root` or `deploy`)
 - `HOSTINGER_PORT` (usually `22`)
 - `HOSTINGER_SSH_KEY` (private key contents, PEM/OpenSSH)
 
+Note: in the Swallowtail Root SPA pipeline, the VPS IP/hostname is also provided via the `HOSTINGER_HOST` GitHub Actions secret (it is not embedded in the workflow YAML). To reuse the same VPS, copy the value of `HOSTINGER_HOST` from the Swallowtail repo’s Actions secrets into this repo.
+
 Optional:
 
 - `OQORG_REMOTE_DIR` (defaults to `/var/www/orlandoqazaqtary.org/public`)
+
+VPS reference:
+
+- Hostinger plan: KVM 2
+- Hostname: `srv521287.hstgr.cloud`
+- IPv4: `77.37.86.202`
 
 The workflow currently deploys to:
 
