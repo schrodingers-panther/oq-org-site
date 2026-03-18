@@ -6,7 +6,7 @@
     <title>Orlando Qazaqtary</title>
     <meta
         name="description"
-        content="Orlando Qazaqtary is the main home for the Kazakh community in Orlando, connecting culture, events, Nauryz, Nauryz Cup, families, and future community initiatives."
+        content="Orlando Qazaqtary is the official online home of the Kazakh community in Orlando, featuring community news, cultural events, support, and dedicated access to Nauryz 2026 and Nauryz Cup 2026."
     >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,6 +156,76 @@
             background: rgba(255, 255, 255, 0.12);
             color: var(--white);
             transform: translateY(-1px);
+        }
+
+        .lang-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .lang-toggle {
+            min-height: 38px;
+            padding: 0 14px;
+            border: 1px solid rgba(255, 248, 233, 0.18);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 251, 243, 0.88);
+            font: inherit;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+
+        .lang-toggle:hover {
+            background: rgba(255, 255, 255, 0.14);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .lang-divider {
+            display: inline-block;
+            width: 1px;
+            height: 0.9em;
+            margin: 0 0.55em;
+            background: currentColor;
+            opacity: 0.38;
+            vertical-align: middle;
+        }
+
+        .bilingual-block {
+            display: grid;
+            gap: 10px;
+        }
+
+        .bilingual-block .lang-line + .lang-line {
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 244, 212, 0.22);
+        }
+
+        body[data-lang="kz"] .lang-en,
+        body[data-lang="kz"] .lang-divider {
+            display: none !important;
+        }
+
+        body[data-lang="en"] .lang-kz,
+        body[data-lang="en"] .lang-divider {
+            display: none !important;
+        }
+
+        body[data-lang="kz"] .bilingual-block,
+        body[data-lang="en"] .bilingual-block {
+            gap: 0;
+        }
+
+        body[data-lang="kz"] .bilingual-block .lang-line,
+        body[data-lang="en"] .bilingual-block .lang-line {
+            padding-top: 0;
+            border-top: 0;
         }
 
         .hero {
@@ -419,6 +489,17 @@
             margin: 12px 0 0;
             font-size: 1.04rem;
             color: rgba(19, 33, 29, 0.76);
+        }
+
+        .section-heading .bilingual-block .lang-line + .lang-line,
+        .card .bilingual-block .lang-line + .lang-line,
+        .quote-card .bilingual-block .lang-line + .lang-line,
+        .showcase-card .bilingual-block .lang-line + .lang-line,
+        .subdomain-panel .bilingual-block .lang-line + .lang-line,
+        .form-card .bilingual-block .lang-line + .lang-line,
+        .faq-card .bilingual-block .lang-line + .lang-line,
+        .footer-card .bilingual-block .lang-line + .lang-line {
+            border-top-color: rgba(19, 33, 29, 0.12);
         }
 
         .info-grid,
@@ -916,6 +997,28 @@
                 padding: 18px 0;
             }
 
+            .lang-controls {
+                width: 100%;
+            }
+
+            .lang-toggle {
+                min-height: 34px;
+                padding: 0 12px;
+                font-size: 0.74rem;
+            }
+
+            .lang-divider {
+                margin: 0 0.34em;
+            }
+
+            .bilingual-block {
+                gap: 7px;
+            }
+
+            .bilingual-block .lang-line + .lang-line {
+                padding-top: 7px;
+            }
+
             .hero-grid {
                 padding: 28px;
             }
@@ -950,7 +1053,7 @@
         }
     </style>
 </head>
-<body>
+<body data-lang="kz">
     <header class="topbar">
         <div class="topbar-inner">
             <a class="brand" href="#top" aria-label="Orlando Qazaqtary home">
@@ -963,13 +1066,16 @@
                 </div>
             </a>
             <nav class="nav" aria-label="Primary">
-                <a href="#about">About</a>
-                <a href="#events">Events</a>
-                <a href="#subdomains">Subdomains</a>
-                <a href="#community">Community</a>
-                <a href="#support">Support</a>
-                <a href="#faq">FAQ</a>
+                <a href="#about">Біз туралы<span class="lang-divider" aria-hidden="true"></span>About</a>
+                <a href="#events">Іс-шаралар<span class="lang-divider" aria-hidden="true"></span>Events</a>
+                <a href="#subdomains">Субдомендер<span class="lang-divider" aria-hidden="true"></span>Subdomains</a>
+                <a href="#community">Қауым<span class="lang-divider" aria-hidden="true"></span>Community</a>
+                <a href="#support">Қолдау<span class="lang-divider" aria-hidden="true"></span>Support</a>
+                <a href="#faq">Сұрақтар<span class="lang-divider" aria-hidden="true"></span>FAQ</a>
             </nav>
+            <div class="lang-controls" aria-label="Language toggle">
+                <button class="lang-toggle" id="languageToggle" type="button" aria-label="Toggle language">Eng</button>
+            </div>
         </div>
     </header>
 
@@ -979,32 +1085,40 @@
                 <div class="hero-panel">
                     <div class="hero-grid">
                         <div class="hero-copy">
-                            <div class="eyebrow fade-up">Kazakh community in Central Florida</div>
+                            <div class="eyebrow fade-up">Орталық Флоридадағы қазақ қауымы<span class="lang-divider" aria-hidden="true"></span>Kazakh community in Central Florida</div>
                             <h1 class="fade-up delay-1">
                                 Orlando Qazaqtary
-                                <span>Kazakh community in Orlando</span>
+                                <span>Орландодағы қазақ қауымы<span class="lang-divider" aria-hidden="true"></span>Kazakh community in Orlando</span>
                             </h1>
-                            <p class="fade-up delay-2">
-                                Orlando Qazaqtary is the official online home of the Kazakh community in Orlando. The site
-                                brings together community news, cultural events, donation and volunteer opportunities, and
-                                dedicated access to major initiatives such as Nauryz and Nauryz Cup.
-                            </p>
+                            <div class="bilingual-block fade-up delay-2">
+                                <div class="lang-line">
+                                    Orlando Qazaqtary - Орландодағы қазақ қауымының ресми онлайн кеңістігі. Бұл сайтта
+                                    қауым жаңалықтары, мәдени іс-шаралар, еріктілік пен қолдау мүмкіндіктері, сондай-ақ
+                                    Nauryz 2026 және Nauryz Cup 2026 жобаларына арналған арнайы беттер бір жерге
+                                    жинақталған.
+                                </div>
+                                <div class="lang-line">
+                                    Orlando Qazaqtary is the official online home of the Kazakh community in Orlando. The
+                                    site brings together community news, cultural events, opportunities to support and
+                                    volunteer, and dedicated access to Nauryz 2026 and Nauryz Cup 2026.
+                                </div>
+                            </div>
                             <div class="hero-actions fade-up delay-2">
-                                <a class="btn btn-primary" data-link="donate" href="#support">Donate to the community</a>
-                                <a class="btn btn-secondary" href="#subdomains">Explore Nauryz subdomains</a>
+                                <a class="btn btn-primary" data-link="donate" href="#support">Қауымға қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Support the community</a>
+                                <a class="btn btn-secondary" href="#subdomains">2026 сайттарын көру<span class="lang-divider" aria-hidden="true"></span>Explore 2026 event sites</a>
                             </div>
                             <div class="hero-stats fade-up delay-3">
                                 <div class="hero-stat">
-                                    <strong>Main site</strong>
-                                    <span>Central home for news, support, and community information</span>
+                                    <strong>Негізгі сайт<span class="lang-divider" aria-hidden="true"></span>Main site</strong>
+                                    <span>Қауым жаңалықтары, анықтама және қолдау үшін негізгі алаң<span class="lang-divider" aria-hidden="true"></span>Central home for news, support, and community information</span>
                                 </div>
                                 <div class="hero-stat">
-                                    <strong>Nauryz</strong>
-                                    <span>Separate subdomain for the annual cultural celebration</span>
+                                    <strong>Наурыз 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026</strong>
+                                    <span>2026 жылғы Наурыз мерекесіне арналған жеке сайт<span class="lang-divider" aria-hidden="true"></span>Dedicated website for the 2026 Nauryz celebration</span>
                                 </div>
                                 <div class="hero-stat">
-                                    <strong>Nauryz Cup</strong>
-                                    <span>Dedicated event site for tournament details and registration</span>
+                                    <strong>Наурыз Кубогы 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026</strong>
+                                    <span>Турнир туралы ақпарат пен тіркелуге арналған жеке сайт<span class="lang-divider" aria-hidden="true"></span>Dedicated event site for tournament information and registration</span>
                                 </div>
                             </div>
                         </div>
@@ -1014,11 +1128,17 @@
                                     <img src="OQ_logo_clean_social_1024_recolored.png" alt="Orlando Qazaqtary logo">
                                 </div>
                                 <div class="showcase-note">
-                                    <strong>Community identity</strong>
-                                    <p>
-                                        The original Orlando Qazaqtary mark is used here in a recolored version that aligns
-                                        with the visual language of the Nauryz Cup website and related community projects.
-                                    </p>
+                                    <strong>Қауым айшықтамасы<span class="lang-divider" aria-hidden="true"></span>Community identity</strong>
+                                    <div class="bilingual-block">
+                                        <div class="lang-line">
+                                            Бұл нұсқада Orlando Qazaqtary логотипі қауымның негізгі сайты мен Nauryz Cup 2026
+                                            жобасының визуалдық бағытына үйлестіріліп қолданылған.
+                                        </div>
+                                        <div class="lang-line">
+                                            This version of the Orlando Qazaqtary logo is adapted to align with the visual
+                                            direction of the main site and Nauryz Cup 2026.
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1030,33 +1150,53 @@
         <section id="about">
             <div class="shell">
                 <div class="section-heading">
-                    <span class="kicker">About</span>
-                    <h2>A central platform for community life, events, and outreach.</h2>
-                    <p>
-                        Orlando Qazaqtary serves as the main point of reference for the community: a place to learn about
-                        upcoming events, find key information, support local initiatives, and stay connected throughout the year.
-                    </p>
+                    <span class="kicker">Біз туралы<span class="lang-divider" aria-hidden="true"></span>About</span>
+                    <h2>Қауым өмірі, іс-шаралар және байланысқа арналған негізгі алаң<span class="lang-divider" aria-hidden="true"></span>A central platform for community life, events, and outreach.</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">
+                            Orlando Qazaqtary қауым үшін негізгі ақпарат көзі ретінде қызмет етеді: мұнда алдағы
+                            іс-шаралар, маңызды мәліметтер, қолдау жолдары және жыл бойы байланыста болуға арналған
+                            мүмкіндіктер жинақталған.
+                        </div>
+                        <div class="lang-line">
+                            Orlando Qazaqtary serves as the main point of reference for the community: a place to learn
+                            about upcoming events, find key information, support local initiatives, and stay connected
+                            throughout the year.
+                        </div>
+                    </div>
                 </div>
                 <div class="info-grid">
                     <article class="card">
-                        <span class="label">Identity</span>
-                        <h3>Clear public identity</h3>
-                        <p>A recognizable and consistent home for Orlando Qazaqtary across events, announcements, and partnerships.</p>
+                        <span class="label">Бейне<span class="lang-divider" aria-hidden="true"></span>Identity</span>
+                        <h3>Айқын қоғамдық келбет<span class="lang-divider" aria-hidden="true"></span>Clear public identity</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Orlando Qazaqtary-ды іс-шаралар, хабарландырулар және серіктестіктер аясында бірізді таныстыратын ресми кеңістік.</div>
+                            <div class="lang-line">A recognizable and consistent home for Orlando Qazaqtary across events, announcements, and partnerships.</div>
+                        </div>
                     </article>
                     <article class="card">
-                        <span class="label">Families</span>
-                        <h3>Welcoming community space</h3>
-                        <p>A useful starting point for families, students, guests, and long-standing members of the community.</p>
+                        <span class="label">Отбасы<span class="lang-divider" aria-hidden="true"></span>Families</span>
+                        <h3>Ашық қауым кеңістігі<span class="lang-divider" aria-hidden="true"></span>Welcoming community space</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Отбасылар, студенттер, қонақтар және қауымның тұрақты мүшелері үшін пайдалы бастапқы алаң.</div>
+                            <div class="lang-line">A useful starting point for families, students, guests, and long-standing members of the community.</div>
+                        </div>
                     </article>
                     <article class="card">
-                        <span class="label">Projects</span>
-                        <h3>Room to grow</h3>
-                        <p>Structured to support cultural programming, seasonal events, and future community-led initiatives.</p>
+                        <span class="label">Жобалар<span class="lang-divider" aria-hidden="true"></span>Projects</span>
+                        <h3>Өсуге дайын алаң<span class="lang-divider" aria-hidden="true"></span>Room to grow</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Мәдени бағдарламаларды, маусымдық іс-шараларды және болашақ қауым бастамаларын қолдауға ыңғайланған құрылым.</div>
+                            <div class="lang-line">Structured to support cultural programming, seasonal events, and future community-led initiatives.</div>
+                        </div>
                     </article>
                     <article class="card">
-                        <span class="label">Support</span>
-                        <h3>Support and continuity</h3>
-                        <p>Built to support fundraising, volunteer coordination, and the long-term work behind community events.</p>
+                        <span class="label">Қолдау<span class="lang-divider" aria-hidden="true"></span>Support</span>
+                        <h3>Тұрақтылық пен қолдау<span class="lang-divider" aria-hidden="true"></span>Support and continuity</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Қаржылай қолдауды, еріктілерді үйлестіруді және қауым іс-шараларының ұзақ мерзімді жұмысын қолдауға арналған.</div>
+                            <div class="lang-line">Built to support fundraising, volunteer coordination, and the long-term work behind community events.</div>
+                        </div>
                     </article>
                 </div>
             </div>
@@ -1066,28 +1206,31 @@
             <div class="shell">
                 <div class="quote-wrap">
                     <article class="quote-card">
-                        <span class="kicker">Our Community</span>
+                        <span class="kicker">Біздің қауым<span class="lang-divider" aria-hidden="true"></span>Our Community</span>
                         <blockquote>
+                            “Orlando Qazaqtary Орталық Флоридадағы отбасыларды, студенттерді, мамандарды және Қазақстан
+                            достарын мәдениет, қонақжайлық және ортақ қауым өмірі арқылы біріктіреді.”
+                            <span class="lang-divider" aria-hidden="true"></span>
                             “Orlando Qazaqtary brings together families, students, professionals, and friends of Kazakhstan
                             in Central Florida through culture, hospitality, and shared community life.”
                         </blockquote>
                         <cite>Orlando Qazaqtary</cite>
                         <ul class="quote-list">
-                            <li>Preserve and share Kazakh culture in a visible and meaningful way.</li>
-                            <li>Create a dependable place for events, support, volunteering, and communication.</li>
-                            <li>Keep major projects connected under one trusted community identity.</li>
+                            <li>Қазақ мәдениетін көзге көрінетін және мағыналы түрде сақтау мен бөлісу.<span class="lang-divider" aria-hidden="true"></span>Preserve and share Kazakh culture in a visible and meaningful way.</li>
+                            <li>Іс-шаралар, қолдау, еріктілік және байланыс үшін сенімді кеңістік қалыптастыру.<span class="lang-divider" aria-hidden="true"></span>Create a dependable place for events, support, volunteering, and communication.</li>
+                            <li>Ірі жобаларды бір сенімді қауым айшықтамасының аясында ұштастыру.<span class="lang-divider" aria-hidden="true"></span>Keep major projects connected under one trusted community identity.</li>
                         </ul>
                     </article>
                     <aside class="showcase-card">
-                        <strong>What this site is for</strong>
-                        <p>
-                            This website is designed to be the main entry point for visitors, community members, sponsors,
-                            and partner organizations looking to connect with Orlando Qazaqtary.
-                        </p>
+                        <strong>Сайттың мақсаты<span class="lang-divider" aria-hidden="true"></span>What this site is for</strong>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Бұл сайт Orlando Qazaqtary-мен байланыс орнатқысы келетін қонақтар, қауым мүшелері, демеушілер және серіктестер үшін негізгі кіру нүктесі ретінде жасалған.</div>
+                            <div class="lang-line">This website is designed to be the main entry point for visitors, community members, sponsors, and partner organizations looking to connect with Orlando Qazaqtary.</div>
+                        </div>
                         <div class="showcase-stack">
-                            <div class="showcase-pill">Announcements, event information, and support links live in one official place.</div>
-                            <div class="showcase-pill">Subdomains allow major events to grow without losing brand consistency.</div>
-                            <div class="showcase-pill">Sponsors, volunteers, and guests can all start from the main community website.</div>
+                            <div class="showcase-pill">Хабарландырулар, іс-шара ақпараты және қолдау сілтемелері бір ресми алаңда орналасады.<span class="lang-divider" aria-hidden="true"></span>Announcements, event information, and support links live in one official place.</div>
+                            <div class="showcase-pill">Субдомендер ірі іс-шараларға бренд бірізділігін жоғалтпай кеңеюге мүмкіндік береді.<span class="lang-divider" aria-hidden="true"></span>Subdomains allow major events to grow without losing brand consistency.</div>
+                            <div class="showcase-pill">Демеушілер, еріктілер және қонақтар қауымның негізгі сайтынан бастай алады.<span class="lang-divider" aria-hidden="true"></span>Sponsors, volunteers, and guests can all start from the main community website.</div>
                         </div>
                     </aside>
                 </div>
@@ -1097,48 +1240,48 @@
         <section id="events">
             <div class="shell">
                 <div class="section-heading">
-                    <span class="kicker">Upcoming Events</span>
-                    <h2>Upcoming events and community programs.</h2>
-                    <p>
-                        This section highlights the events and activities most relevant to the community and helps visitors
-                        quickly understand what is happening next.
-                    </p>
+                    <span class="kicker">Алдағы іс-шаралар<span class="lang-divider" aria-hidden="true"></span>Upcoming Events</span>
+                    <h2>Алдағы іс-шаралар мен қауым бағдарламалары<span class="lang-divider" aria-hidden="true"></span>Upcoming events and community programs</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Бұл бөлім қауым үшін маңызды алдағы іс-шаралар мен бағдарламаларды көрсетіп, келесі жоспарларды тез түсінуге көмектеседі.</div>
+                        <div class="lang-line">This section highlights the events and activities most relevant to the community and helps visitors quickly understand what is happening next.</div>
+                    </div>
                 </div>
                 <div class="events-grid">
                     <article class="card event-card">
-                        <span class="event-date">Spring</span>
-                        <h3>Nauryz Celebration</h3>
-                        <p>
-                            Orlando Qazaqtary's annual Nauryz celebration featuring performances, shared meals, family
-                            activities, and a public presentation of Kazakh culture.
-                        </p>
+                        <span class="event-date">Көктем<span class="lang-divider" aria-hidden="true"></span>Spring</span>
+                        <h3>Наурыз 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Orlando Qazaqtary ұйымдастыратын 2026 жылғы Наурыз мерекесі қойылымдар, ортақ дастарқан, отбасылық белсенділіктер және қазақ мәдениетін көпшілікке таныстыратын бағдарламаларды қамтиды.</div>
+                            <div class="lang-line">Orlando Qazaqtary's 2026 Nauryz celebration features performances, shared meals, family activities, and a public presentation of Kazakh culture.</div>
+                        </div>
                         <div class="event-meta">
-                            <span>Main seasonal event</span>
-                            <span>Subdomain-ready</span>
+                            <span>Негізгі маусымдық іс-шара<span class="lang-divider" aria-hidden="true"></span>Main seasonal event</span>
+                            <span>Субдоменге дайын<span class="lang-divider" aria-hidden="true"></span>Subdomain-ready</span>
                         </div>
                     </article>
                     <article class="card event-card">
-                        <span class="event-date">Tournament</span>
-                        <h3>Nauryz Cup</h3>
-                        <p>
-                            A dedicated tournament experience with registration, schedules, event updates, and competition
-                            information presented on its own website.
-                        </p>
+                        <span class="event-date">Турнир<span class="lang-divider" aria-hidden="true"></span>Tournament</span>
+                        <h3>Наурыз Кубогы 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Тіркелу, кесте, жаңалықтар және жарысқа қатысты мәліметтер жеке сайтта ұсынылатын арнайы турнирлік жоба.</div>
+                            <div class="lang-line">A dedicated tournament experience with registration, schedules, event updates, and competition information presented on its own website.</div>
+                        </div>
                         <div class="event-meta">
-                            <span>Competition format</span>
-                            <span>Event microsite</span>
+                            <span>Жарыс форматы<span class="lang-divider" aria-hidden="true"></span>Competition format</span>
+                            <span>Іс-шара микросайты<span class="lang-divider" aria-hidden="true"></span>Event microsite</span>
                         </div>
                     </article>
                     <article class="card event-card">
-                        <span class="event-date">Year-round</span>
-                        <h3>Community Gatherings</h3>
-                        <p>
-                            Smaller gatherings held throughout the year, including family events, guest visits, language
-                            meetups, and informal community evenings.
-                        </p>
+                        <span class="event-date">Жыл бойы<span class="lang-divider" aria-hidden="true"></span>Year-round</span>
+                        <h3>Қауым кездесулері<span class="lang-divider" aria-hidden="true"></span>Community Gatherings</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Жыл бойы өтетін шағын кездесулер, соның ішінде отбасылық іс-шаралар, қонақ қабылдау, тілдік жүздесулер және бейресми қауым кештері.</div>
+                            <div class="lang-line">Smaller gatherings held throughout the year, including family events, guest visits, language meetups, and informal community evenings.</div>
+                        </div>
                         <div class="event-meta">
-                            <span>Ongoing activity</span>
-                            <span>Main-site updates</span>
+                            <span>Тұрақты белсенділік<span class="lang-divider" aria-hidden="true"></span>Ongoing activity</span>
+                            <span>Негізгі сайт жаңартуы<span class="lang-divider" aria-hidden="true"></span>Main-site updates</span>
                         </div>
                     </article>
                 </div>
@@ -1148,47 +1291,47 @@
         <section id="subdomains">
             <div class="shell">
                 <div class="section-heading">
-                    <span class="kicker">Subdomains</span>
-                    <h2>Subdomains for major events and seasonal projects.</h2>
-                    <p>
-                        The main website remains focused on Orlando Qazaqtary as a whole, while larger initiatives can have
-                        dedicated spaces with their own structure, content, and campaign focus.
-                    </p>
+                    <span class="kicker">Субдомендер<span class="lang-divider" aria-hidden="true"></span>Subdomains</span>
+                    <h2>Ірі іс-шаралар мен маусымдық жобаларға арналған субдомендер<span class="lang-divider" aria-hidden="true"></span>Subdomains for major events and seasonal projects</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Негізгі сайт Orlando Qazaqtary қауымына тұтастай қызмет етеді, ал ірі бастамалар өз құрылымы, мазмұны және науқандық бағыты бар жеке кеңістікке ие бола алады.</div>
+                        <div class="lang-line">The main website remains focused on Orlando Qazaqtary as a whole, while larger initiatives can have dedicated spaces with their own structure, content, and campaign focus.</div>
+                    </div>
                 </div>
                 <div class="subdomain-grid">
                     <article class="subdomain-panel dark">
-                        <h3>Recommended website structure</h3>
-                        <p>
-                            Keep the main site as the permanent community homepage and use subdomains for larger event
-                            properties that need their own messaging, schedules, registration flow, or media.
-                        </p>
+                        <h3>Ұсынылатын сайт құрылымы<span class="lang-divider" aria-hidden="true"></span>Recommended website structure</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Негізгі сайтты қауымның тұрақты басты беті ретінде қалдырып, жеке мазмұн, кесте, тіркелу жолы немесе медиа қажет ететін ірі іс-шараларға субдомендер пайдалану ұсынылады.</div>
+                            <div class="lang-line">Keep the main site as the permanent community homepage and use subdomains for larger event properties that need their own messaging, schedules, registration flow, or media.</div>
+                        </div>
                         <div class="subdomain-list">
                             <div class="subdomain-item">
-                                <strong>Main site</strong>
+                                <strong>Негізгі сайт<span class="lang-divider" aria-hidden="true"></span>Main site</strong>
                                 <span>orlandoqazaqtary.org</span>
                             </div>
                             <div class="subdomain-item">
-                                <strong>Nauryz</strong>
+                                <strong>Наурыз 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026</strong>
                                 <span>nauryz.orlandoqazaqtary.org</span>
                             </div>
                             <div class="subdomain-item">
-                                <strong>Nauryz Cup</strong>
+                                <strong>Наурыз Кубогы 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026</strong>
                                 <span>cup.orlandoqazaqtary.org</span>
                             </div>
                         </div>
                     </article>
                     <article class="subdomain-panel">
-                        <span class="kicker">Suggested deployment</span>
-                        <h3>Separate event sites with one shared identity.</h3>
-                        <p>
-                            Use `nauryz.orlandoqazaqtary.org` for the broader celebration and deploy `ncc.html` to
-                            `cup.orlandoqazaqtary.org` as the dedicated tournament site.
-                        </p>
+                        <span class="kicker">Ұсынылатын орналастыру<span class="lang-divider" aria-hidden="true"></span>Suggested deployment</span>
+                        <h3>Жеке іс-шара сайттары, ортақ бір айшықтама<span class="lang-divider" aria-hidden="true"></span>Separate event sites with one shared identity</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">`nauryz.orlandoqazaqtary.org` доменін Наурыз 2026-ға, ал `ncc.html` бетін `cup.orlandoqazaqtary.org` доменіне Наурыз Кубогы 2026 сайты ретінде орналастырыңыз.</div>
+                            <div class="lang-line">Use `nauryz.orlandoqazaqtary.org` for Nauryz 2026 and deploy `ncc.html` to `cup.orlandoqazaqtary.org` as the dedicated Nauryz Cup 2026 website.</div>
+                        </div>
                         <a class="subdomain-link" href="https://nauryz.orlandoqazaqtary.org">nauryz.orlandoqazaqtary.org</a>
                         <a class="subdomain-link" href="https://cup.orlandoqazaqtary.org">cup.orlandoqazaqtary.org</a>
                         <div class="hero-actions" style="margin-top: 22px;">
-                            <a class="btn btn-primary" data-link="donate" href="#support">Donate</a>
-                            <a class="btn btn-secondary" href="https://cup.orlandoqazaqtary.org">Visit Nauryz Cup</a>
+                            <a class="btn btn-primary" data-link="donate" href="#support">Қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Donate</a>
+                            <a class="btn btn-secondary" href="https://cup.orlandoqazaqtary.org">Наурыз Кубогы 2026 сайты<span class="lang-divider" aria-hidden="true"></span>Visit Nauryz Cup 2026</a>
                         </div>
                     </article>
                 </div>
@@ -1198,28 +1341,37 @@
         <section id="community">
             <div class="shell">
                 <div class="section-heading">
-                    <span class="kicker">Community Features</span>
-                    <h2>Core sections of a complete community website.</h2>
-                    <p>
-                        These sections give the website room to support regular communication, event logistics, and public
-                        presentation without requiring a redesign as the community grows.
-                    </p>
+                    <span class="kicker">Қауым бөлімі<span class="lang-divider" aria-hidden="true"></span>Community Features</span>
+                    <h2>Толыққанды қауым сайтының негізгі бөлімдері<span class="lang-divider" aria-hidden="true"></span>Core sections of a complete community website</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Бұл бөлімдер сайтқа тұрақты байланыс, іс-шараларды ұйымдастыру және қауымды таныстыру міндеттерін болашақта қайта құрастырмай-ақ атқаруға мүмкіндік береді.</div>
+                        <div class="lang-line">These sections give the website room to support regular communication, event logistics, and public presentation without requiring a redesign as the community grows.</div>
+                    </div>
                 </div>
                 <div class="feature-grid">
                     <article class="card feature-card">
-                        <span class="label">Announcements</span>
-                        <h3>Community news and updates</h3>
-                        <p>Share news, reminders, deadlines, and practical updates in one consistent place.</p>
+                        <span class="label">Хабарландыру<span class="lang-divider" aria-hidden="true"></span>Announcements</span>
+                        <h3>Қауым жаңалықтары мен жаңартулар<span class="lang-divider" aria-hidden="true"></span>Community news and updates</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Жаңалықтарды, еске салуларды, мерзімдерді және маңызды ақпаратты бір ресми алаңда жариялау.</div>
+                            <div class="lang-line">Share news, reminders, deadlines, and practical updates in one consistent place.</div>
+                        </div>
                     </article>
                     <article class="card feature-card">
-                        <span class="label">Registration</span>
-                        <h3>Event signups and interest forms</h3>
-                        <p>Direct visitors to RSVPs, ticket links, family forms, and program signups from the main website.</p>
+                        <span class="label">Тіркелу<span class="lang-divider" aria-hidden="true"></span>Registration</span>
+                        <h3>Іс-шара тіркелуі мен қызығушылық формалары<span class="lang-divider" aria-hidden="true"></span>Event signups and interest forms</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Қонақтарды RSVP, тіркелу сілтемелері, отбасылық формалар және іс-шара жазылу жолдарына негізгі сайттан бағыттау.</div>
+                            <div class="lang-line">Direct visitors to RSVPs, registration links, family forms, and event signups from the main website.</div>
+                        </div>
                     </article>
                     <article class="card feature-card">
-                        <span class="label">Outreach</span>
-                        <h3>Partner-ready public presence</h3>
-                        <p>Present Orlando Qazaqtary clearly to sponsors, venues, guests, and partner organizations.</p>
+                        <span class="label">Байланыс<span class="lang-divider" aria-hidden="true"></span>Outreach</span>
+                        <h3>Серіктестерге дайын ресми келбет<span class="lang-divider" aria-hidden="true"></span>Partner-ready public presence</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Orlando Qazaqtary-ды демеушілерге, алаң иелеріне, қонақтарға және серіктес ұйымдарға анық таныстыру.</div>
+                            <div class="lang-line">Present Orlando Qazaqtary clearly to sponsors, venues, guests, and partner organizations.</div>
+                        </div>
                     </article>
                 </div>
             </div>
@@ -1228,40 +1380,40 @@
         <section id="gallery">
             <div class="shell">
                 <div class="section-heading">
-                    <span class="kicker">Gallery</span>
-                    <h2>Gallery of community events and celebrations.</h2>
-                    <p>
-                        This gallery section is designed for real photography from gatherings, performances, family activities,
-                        and Nauryz Cup.
-                    </p>
+                    <span class="kicker">Галерея<span class="lang-divider" aria-hidden="true"></span>Gallery</span>
+                    <h2>Қауым іс-шаралары мен мерекелер галереясы<span class="lang-divider" aria-hidden="true"></span>Gallery of community events and celebrations</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Бұл галерея бөлімі кездесулерден, қойылымдардан, отбасылық іс-шаралардан, Наурыз 2026 және Наурыз Кубогы 2026 сәттерінен алынған фотосуреттерге арналған.</div>
+                        <div class="lang-line">This gallery section is designed for photography from gatherings, performances, family activities, Nauryz 2026, and Nauryz Cup 2026.</div>
+                    </div>
                 </div>
                 <div class="gallery-grid">
                     <article class="card gallery-card">
                         <div class="gallery-visual"></div>
                         <div class="gallery-copy">
-                            <h3>Nauryz evening</h3>
-                            <p>Performance moments, décor, and family celebration highlights.</p>
+                            <h3>Наурыз 2026 мерекесі<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026 celebration</h3>
+                            <p>Қойылымдар, безендіру және көктемгі негізгі мерекеден көріністер<span class="lang-divider" aria-hidden="true"></span>Performance moments, event decor, and highlights from the main spring celebration.</p>
                         </div>
                     </article>
                     <article class="card gallery-card">
                         <div class="gallery-visual"></div>
                         <div class="gallery-copy">
-                            <h3>Community table</h3>
-                            <p>Shared meals, hospitality, and conversation across generations.</p>
+                            <h3>Қауым қонақжайлығы<span class="lang-divider" aria-hidden="true"></span>Community hospitality</h3>
+                            <p>Ортақ дастарқан, қонақжайлық және ұрпақтар арасындағы әңгіме<span class="lang-divider" aria-hidden="true"></span>Shared meals, hospitality, and conversation across generations.</p>
                         </div>
                     </article>
                     <article class="card gallery-card">
                         <div class="gallery-visual"></div>
                         <div class="gallery-copy">
-                            <h3>Youth moments</h3>
-                            <p>Children and young adults participating in culture and language.</p>
+                            <h3>Жастар қатысуы<span class="lang-divider" aria-hidden="true"></span>Youth participation</h3>
+                            <p>Балалар мен жастардың мәдениетке, тілге және қауым өміріне араласуы<span class="lang-divider" aria-hidden="true"></span>Children and young adults participating in culture, language, and community life.</p>
                         </div>
                     </article>
                     <article class="card gallery-card">
                         <div class="gallery-visual"></div>
                         <div class="gallery-copy">
-                            <h3>Nauryz Cup action</h3>
-                            <p>Sport-driven energy that expands the public face of the community.</p>
+                            <h3>Наурыз Кубогы 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026</h3>
+                            <p>Жарыс, командалық рух және қауымды танытатын спорттық серпін<span class="lang-divider" aria-hidden="true"></span>Competition, teamwork, and sport-driven energy that expand the public face of the community.</p>
                         </div>
                     </article>
                 </div>
@@ -1271,33 +1423,33 @@
         <section id="partners">
             <div class="shell">
                 <div class="section-heading">
-                    <span class="kicker">Partners</span>
-                    <h2>Partners, sponsors, and community support.</h2>
-                    <p>
-                        This section gives sponsors, community partners, and supporting organizations a clear and professional
-                        place on the website.
-                    </p>
+                    <span class="kicker">Серіктестер<span class="lang-divider" aria-hidden="true"></span>Partners</span>
+                    <h2>Серіктестер, демеушілер және қауым қолдауы<span class="lang-divider" aria-hidden="true"></span>Partners, sponsors, and community support</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Бұл бөлім демеушілерге, қауым серіктестеріне және қолдау көрсететін ұйымдарға сайтта айқын әрі кәсіби орын береді.</div>
+                        <div class="lang-line">This section gives sponsors, community partners, and supporting organizations a clear and professional place on the website.</div>
+                    </div>
                 </div>
                 <div class="partners-grid">
                     <article class="card partner-card">
                         <div class="partner-mark">OQ</div>
-                        <h3>Cultural partners</h3>
-                        <p>Feature local organizations, community associations, and institutions that support cultural programming.</p>
+                        <h3>Мәдени серіктестер<span class="lang-divider" aria-hidden="true"></span>Cultural partners</h3>
+                        <p>Мәдени бағдарламаларды қолдайтын жергілікті ұйымдар мен қауым бірлестіктерін таныстыру<span class="lang-divider" aria-hidden="true"></span>Feature local organizations, community associations, and institutions that support cultural programming.</p>
                     </article>
                     <article class="card partner-card">
                         <div class="partner-mark">NC</div>
-                        <h3>Nauryz supporters</h3>
-                        <p>Recognize businesses and sponsors who contribute to the annual Nauryz celebration.</p>
+                        <h3>Наурыз 2026 қолдаушылары<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026 supporters</h3>
+                        <p>2026 жылғы Наурыз мерекесіне үлес қосқан кәсіпорындар мен демеушілерді көрсету<span class="lang-divider" aria-hidden="true"></span>Recognize businesses and sponsors who contribute to the 2026 Nauryz celebration.</p>
                     </article>
                     <article class="card partner-card">
                         <div class="partner-mark">SC</div>
-                        <h3>Nauryz Cup sponsors</h3>
-                        <p>Highlight supporters of Nauryz Cup and other sport-related community initiatives.</p>
+                        <h3>Наурыз Кубогы 2026 демеушілері<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026 sponsors</h3>
+                        <p>Наурыз Кубогы 2026 және спортқа қатысты қауым бастамаларын қолдайтын серіктестерді көрсету<span class="lang-divider" aria-hidden="true"></span>Highlight supporters of Nauryz Cup 2026 and other sport-related community initiatives.</p>
                     </article>
                     <article class="card partner-card">
                         <div class="partner-mark">FL</div>
-                        <h3>Regional network</h3>
-                        <p>Recognize regional friends, institutions, and partner communities across Florida and beyond.</p>
+                        <h3>Аймақтық желі<span class="lang-divider" aria-hidden="true"></span>Regional network</h3>
+                        <p>Флоридадағы және одан тыс аймақтардағы серіктес қауымдар мен ұйымдарды таныстыру<span class="lang-divider" aria-hidden="true"></span>Recognize regional friends, institutions, and partner communities across Florida and beyond.</p>
                     </article>
                 </div>
             </div>
@@ -1306,77 +1458,86 @@
         <section id="support">
             <div class="shell">
                 <div class="section-heading">
-                    <span class="kicker">Support and Volunteer</span>
-                    <h2>Support, volunteer, and stay connected.</h2>
-                    <p>
-                        Donation, volunteer, and signup links should be easy to find so community members can support the
-                        organization in practical ways.
-                    </p>
+                    <span class="kicker">Қолдау және еріктілік<span class="lang-divider" aria-hidden="true"></span>Support and Volunteer</span>
+                    <h2>Қолдау көрсетіп, ерікті болып, байланыста болыңыз<span class="lang-divider" aria-hidden="true"></span>Support, volunteer, and stay connected</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Қолдау, еріктілік және тіркелу сілтемелері қауым мүшелері үшін оңай табылатын болуы керек, сонда әркім ұйым жұмысына нақты үлес қоса алады.</div>
+                        <div class="lang-line">Donation, volunteer, and signup links should be easy to find so community members can support the organization in practical ways.</div>
+                    </div>
                 </div>
                 <div class="support-grid">
                     <article class="form-card">
-                        <h3>Registration, volunteer, and newsletter access</h3>
-                        <p>
-                            For a static website, the most reliable approach is to connect visitors to hosted forms and
-                            signup pages. Update the configuration block at the bottom of this file with your live service URLs.
-                        </p>
+                        <h3>Тіркелу, еріктілік және жаңалықтарға жазылу<span class="lang-divider" aria-hidden="true"></span>Registration, volunteer, and newsletter access</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Төмендегі сілтемелер арқылы іс-шараларға тіркеліп, қауым жұмысына ерікті ретінде қосылып, Orlando Qazaqtary жаңалықтарына жазыла аласыз.</div>
+                            <div class="lang-line">Use the links below to register for events, volunteer for community activities, and subscribe for updates from Orlando Qazaqtary.</div>
+                        </div>
                         <div class="action-list">
                             <div class="action-item">
                                 <div>
-                                    <strong>Event registration</strong>
-                                    <span>Use a hosted registration form such as Tally to manage RSVPs, family signups, and event participation.</span>
+                                    <strong>Іс-шара тіркелуі<span class="lang-divider" aria-hidden="true"></span>Event registration</strong>
+                                    <span>Наурыз 2026, Наурыз Кубогы 2026 және басқа қауым іс-шараларына тіркелу<span class="lang-divider" aria-hidden="true"></span>Register for Nauryz 2026, Nauryz Cup 2026, and other community events.</span>
                                 </div>
-                                <a class="btn btn-primary" data-link="registration" href="#" target="_blank" rel="noreferrer">Register</a>
+                                <a class="btn btn-primary" data-link="registration" href="#" target="_blank" rel="noreferrer">Тіркелу<span class="lang-divider" aria-hidden="true"></span>Register</a>
                             </div>
                             <div class="action-item">
                                 <div>
-                                    <strong>Volunteer form</strong>
-                                    <span>Collect volunteer interest for setup, hosting, logistics, outreach, and family support through a dedicated hosted form.</span>
+                                    <strong>Еріктілер формасы<span class="lang-divider" aria-hidden="true"></span>Volunteer form</strong>
+                                    <span>Дайындық, қарсы алу, логистика, ақпарат тарату және отбасылық қолдау жұмыстарына қосылу<span class="lang-divider" aria-hidden="true"></span>Sign up to help with setup, hosting, logistics, outreach, and family support.</span>
                                 </div>
-                                <a class="btn btn-primary" data-link="volunteer" href="#" target="_blank" rel="noreferrer">Volunteer</a>
+                                <a class="btn btn-primary" data-link="volunteer" href="#" target="_blank" rel="noreferrer">Ерікті болу<span class="lang-divider" aria-hidden="true"></span>Volunteer</a>
                             </div>
                             <div class="action-item">
                                 <div>
-                                    <strong>Newsletter signup</strong>
-                                    <span>Connect a hosted newsletter signup page, such as Brevo, for community updates and announcements.</span>
+                                    <strong>Жаңалықтарға жазылу<span class="lang-divider" aria-hidden="true"></span>Newsletter signup</strong>
+                                    <span>Хабарландырулар, іс-шара еске салулары және қауым жаңалықтарын алу үшін жазылыңыз<span class="lang-divider" aria-hidden="true"></span>Subscribe to receive announcements, event reminders, and community updates.</span>
                                 </div>
-                                <a class="btn btn-primary" data-link="newsletter" href="#" target="_blank" rel="noreferrer">Subscribe</a>
+                                <a class="btn btn-primary" data-link="newsletter" href="#" target="_blank" rel="noreferrer">Жазылу<span class="lang-divider" aria-hidden="true"></span>Subscribe</a>
                             </div>
                         </div>
-                        <p class="form-note">
-                            This approach keeps the website static while still supporting payments, registration, volunteer
-                            intake, and email collection.
-                        </p>
+                        <div class="form-note bilingual-block">
+                            <div class="lang-line">Қолдау, тіркелу, еріктілік және жаңалықтарға жазылу арнайы онлайн формалар мен төлем беттері арқылы басқарыла алады.</div>
+                            <div class="lang-line">Donations, registration, volunteer interest, and newsletter signups can all be managed through dedicated online forms and payment pages.</div>
+                        </div>
                     </article>
                     <aside class="form-card">
-                        <h3>Support priorities</h3>
-                        <p>
-                            Donations help cover venue costs, children’s programming, community meals, event production, and
-                            ongoing digital infrastructure.
-                        </p>
+                        <h3>Қолдау басымдықтары<span class="lang-divider" aria-hidden="true"></span>Support priorities</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Қайырымдылық алаңды жалға алу, балалар бағдарламалары, қауым дастарханы, іс-шараны ұйымдастыру және цифрлық инфрақұрылымды қолдауға жұмсалады.</div>
+                            <div class="lang-line">Donations help cover venue costs, children's programming, community meals, event production, and ongoing digital infrastructure.</div>
+                        </div>
                         <div class="subdomain-list" style="margin-top: 20px;">
                             <div class="card" style="padding: 18px;">
-                                <span class="label">Donate</span>
-                                <h3 style="margin-top: 8px;">Community giving</h3>
-                                <p>Connect this button to a public donation page such as Stripe or Zeffy for fast, reliable community support.</p>
+                                <span class="label">Қайырымдылық<span class="lang-divider" aria-hidden="true"></span>Donate</span>
+                                <h3 style="margin-top: 8px;">Қауымға қолдау<span class="lang-divider" aria-hidden="true"></span>Community giving</h3>
+                                <div class="bilingual-block">
+                                    <div class="lang-line">Orlando Qazaqtary жұмысына қауіпсіз онлайн төлем беті арқылы қолдау көрсетіңіз.</div>
+                                    <div class="lang-line">Support Orlando Qazaqtary through a secure online donation page.</div>
+                                </div>
                                 <div class="hero-actions" style="margin-top: 18px;">
-                                    <a class="btn btn-primary" data-link="donate" href="#" target="_blank" rel="noreferrer">Donate Now</a>
+                                    <a class="btn btn-primary" data-link="donate" href="#" target="_blank" rel="noreferrer">Қазір қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Donate Now</a>
                                 </div>
                             </div>
                             <div class="card" style="padding: 18px;">
-                                <span class="label">Newsletter</span>
-                                <h3 style="margin-top: 8px;">Community updates</h3>
-                                <p>Collect email subscribers for event reminders, community announcements, and registration updates.</p>
+                                <span class="label">Жаңалықтар<span class="lang-divider" aria-hidden="true"></span>Newsletter</span>
+                                <h3 style="margin-top: 8px;">Қауым жаңартулары<span class="lang-divider" aria-hidden="true"></span>Community updates</h3>
+                                <div class="bilingual-block">
+                                    <div class="lang-line">Іс-шара еске салуларын, қауым хабарландыруларын және тіркелу жаңартуларын электрондық пошта арқылы алыңыз.</div>
+                                    <div class="lang-line">Receive event reminders, community announcements, and registration updates by email.</div>
+                                </div>
                                 <div class="hero-actions" style="margin-top: 18px;">
-                                    <a class="btn btn-secondary" data-link="newsletter" href="#" target="_blank" rel="noreferrer">Join newsletter</a>
+                                    <a class="btn btn-secondary" data-link="newsletter" href="#" target="_blank" rel="noreferrer">Жаңалықтарға қосылу<span class="lang-divider" aria-hidden="true"></span>Join newsletter</a>
                                 </div>
                             </div>
                             <div class="card" style="padding: 18px;">
-                                <span class="label">Volunteer</span>
-                                <h3 style="margin-top: 8px;">Volunteer coordination</h3>
-                                <p>Make it easy for people to help with planning, logistics, setup, hosting, and outreach.</p>
+                                <span class="label">Еріктілік<span class="lang-divider" aria-hidden="true"></span>Volunteer</span>
+                                <h3 style="margin-top: 8px;">Еріктілерді үйлестіру<span class="lang-divider" aria-hidden="true"></span>Volunteer coordination</h3>
+                                <div class="bilingual-block">
+                                    <div class="lang-line">Жоспарлау, логистика, дайындық, қонақ күту және ақпарат тарату жұмыстарына қосылуды жеңілдетіңіз.</div>
+                                    <div class="lang-line">Make it easy for people to help with planning, logistics, setup, hosting, and outreach.</div>
+                                </div>
                                 <div class="hero-actions" style="margin-top: 18px;">
-                                    <a class="btn btn-secondary" data-link="volunteer" href="#" target="_blank" rel="noreferrer">Open volunteer form</a>
+                                    <a class="btn btn-secondary" data-link="volunteer" href="#" target="_blank" rel="noreferrer">Еріктілер формасы<span class="lang-divider" aria-hidden="true"></span>Open volunteer form</a>
                                 </div>
                             </div>
                         </div>
@@ -1388,40 +1549,41 @@
         <section id="faq">
             <div class="shell">
                 <div class="section-heading">
-                    <span class="kicker">FAQ</span>
-                    <h2>Frequently asked questions.</h2>
-                    <p>
-                        A short FAQ helps first-time visitors understand the community and how the website is organized.
-                    </p>
+                    <span class="kicker">Жиі қойылатын сұрақтар<span class="lang-divider" aria-hidden="true"></span>FAQ</span>
+                    <h2>Жиі қойылатын сұрақтар<span class="lang-divider" aria-hidden="true"></span>Frequently asked questions</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Бұл қысқа бөлім жаңа келушілерге қауым туралы және сайттың қалай ұйымдастырылғанын түсінуге көмектеседі.</div>
+                        <div class="lang-line">A short FAQ helps first-time visitors understand the community and how the website is organized.</div>
+                    </div>
                 </div>
                 <div class="faq-card">
                     <div class="faq-item">
-                        <strong>Who is Orlando Qazaqtary for?</strong>
-                        <p>
-                            The community welcomes Kazakhs in Orlando, mixed families, students, professionals, children,
-                            and friends who want to take part in Kazakh cultural life.
-                        </p>
+                        <strong>Orlando Qazaqtary кімдер үшін?<span class="lang-divider" aria-hidden="true"></span>Who is Orlando Qazaqtary for?</strong>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Қауым Орландодағы қазақтарды, аралас отбасыларды, студенттерді, мамандарды, балаларды және қазақ мәдени өміріне араласқысы келетін достарды қарсы алады.</div>
+                            <div class="lang-line">The community welcomes Kazakhs in Orlando, mixed families, students, professionals, children, and friends who want to take part in Kazakh cultural life.</div>
+                        </div>
                     </div>
                     <div class="faq-item">
-                        <strong>Why are Nauryz and Nauryz Cup on subdomains?</strong>
-                        <p>
-                            Because they are large enough to deserve their own focused experience while still remaining part
-                            of the Orlando Qazaqtary ecosystem.
-                        </p>
+                        <strong>Неге Nauryz 2026 мен Nauryz Cup 2026 жеке субдомендерде?<span class="lang-divider" aria-hidden="true"></span>Why are Nauryz 2026 and Nauryz Cup 2026 on subdomains?</strong>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Өйткені бұл екі жоба өз алдына жеке мазмұн мен тәжірибені қажет ететін ауқымды іс-шаралар, бірақ олар әлі де Orlando Qazaqtary экожүйесінің бір бөлігі болып қалады.</div>
+                            <div class="lang-line">Because Nauryz 2026 and Nauryz Cup 2026 are large enough to deserve their own focused experience while still remaining part of the Orlando Qazaqtary ecosystem.</div>
+                        </div>
                     </div>
                     <div class="faq-item">
-                        <strong>How can someone support the community?</strong>
-                        <p>
-                            Through donations, sponsorship, volunteering, sharing announcements, or participating in events
-                            and community programs.
-                        </p>
+                        <strong>Қауымды қалай қолдауға болады?<span class="lang-divider" aria-hidden="true"></span>How can someone support the community?</strong>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Қайырымдылық жасау, демеуші болу, ерікті ретінде көмектесу, хабарландыруларды бөлісу немесе іс-шаралар мен қауым бағдарламаларына қатысу арқылы.</div>
+                            <div class="lang-line">Through donations, sponsorship, volunteering, sharing announcements, or participating in events and community programs.</div>
+                        </div>
                     </div>
                     <div class="faq-item">
-                        <strong>Can this site handle registration and contact forms later?</strong>
-                        <p>
-                            Yes. The structure is already prepared for RSVP links, registration systems, newsletter tools,
-                            and submission workflows.
-                        </p>
+                        <strong>Бұл сайт кейін тіркелу мен байланыс формаларын қабылдай ала ма?<span class="lang-divider" aria-hidden="true"></span>Can this site handle registration and contact forms later?</strong>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Иә. Сайттың құрылымы RSVP сілтемелерін, тіркелу жүйелерін, жаңалықтар құралдарын және жіберу процестерін қосуға дайын.</div>
+                            <div class="lang-line">Yes. The structure is already prepared for RSVP links, registration systems, newsletter tools, and submission workflows.</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1433,33 +1595,90 @@
             <div class="footer-grid">
                 <article class="footer-card">
                     <h3>Orlando Qazaqtary</h3>
-                    <p>
-                        The main website for the Kazakh community in Orlando, bringing together community information,
-                        cultural events, support, and dedicated subdomains for major projects.
-                    </p>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Орландодағы қазақ қауымының негізгі сайты: қауым ақпараты, мәдени іс-шаралар, қолдау және Nauryz 2026 мен Nauryz Cup 2026 субдомендерін бір жерде біріктіреді.</div>
+                        <div class="lang-line">The main website for the Kazakh community in Orlando, bringing together community information, cultural events, support, and dedicated subdomains for Nauryz 2026 and Nauryz Cup 2026.</div>
+                    </div>
                     <div class="footer-legal">&copy; 2026 Orlando Qazaqtary. All rights reserved.</div>
                 </article>
                 <article class="footer-card">
-                    <h3>Site Structure</h3>
+                    <h3>Сайт құрылымы<span class="lang-divider" aria-hidden="true"></span>Site Structure</h3>
                     <ul>
-                        <li>Main site: `orlandoqazaqtary.org`</li>
-                        <li>Nauryz: `nauryz.orlandoqazaqtary.org`</li>
-                        <li>Nauryz Cup: `cup.orlandoqazaqtary.org`</li>
+                        <li>Негізгі сайт: `orlandoqazaqtary.org`<span class="lang-divider" aria-hidden="true"></span>Main site: `orlandoqazaqtary.org`</li>
+                        <li>Наурыз 2026: `nauryz.orlandoqazaqtary.org`<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026: `nauryz.orlandoqazaqtary.org`</li>
+                        <li>Наурыз Кубогы 2026: `cup.orlandoqazaqtary.org`<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026: `cup.orlandoqazaqtary.org`</li>
                     </ul>
                 </article>
                 <article class="footer-card">
-                    <h3>Key Functions</h3>
+                    <h3>Негізгі қызметтер<span class="lang-divider" aria-hidden="true"></span>Key Functions</h3>
                     <ul>
-                        <li>Announcements and community news</li>
-                        <li>Event registration and RSVP</li>
-                        <li>Partner and sponsor recognition</li>
-                        <li>Volunteer and support forms</li>
+                        <li>Хабарландырулар мен қауым жаңалықтары<span class="lang-divider" aria-hidden="true"></span>Announcements and community news</li>
+                        <li>Іс-шара тіркелуі және RSVP<span class="lang-divider" aria-hidden="true"></span>Event registration and RSVP</li>
+                        <li>Серіктестер мен демеушілерді таныстыру<span class="lang-divider" aria-hidden="true"></span>Partner and sponsor recognition</li>
+                        <li>Еріктілер және қолдау формалары<span class="lang-divider" aria-hidden="true"></span>Volunteer and support forms</li>
                     </ul>
                 </article>
             </div>
         </div>
     </footer>
     <script>
+        function wrapTextNode(node, className) {
+            if (!node || node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) {
+                return;
+            }
+            const span = document.createElement("span");
+            span.className = className;
+            span.textContent = node.textContent;
+            node.parentNode.replaceChild(span, node);
+        }
+
+        for (const divider of document.querySelectorAll(".lang-divider")) {
+            const previous = divider.previousSibling;
+            const next = divider.nextSibling;
+
+            if (previous && previous.nodeType === Node.TEXT_NODE) {
+                wrapTextNode(previous, "lang-kz");
+            } else if (previous && previous.nodeType === Node.ELEMENT_NODE && !previous.classList.contains("lang-kz")) {
+                previous.classList.add("lang-kz");
+            }
+
+            if (next && next.nodeType === Node.TEXT_NODE) {
+                wrapTextNode(next, "lang-en");
+            } else if (next && next.nodeType === Node.ELEMENT_NODE && !next.classList.contains("lang-en")) {
+                next.classList.add("lang-en");
+            }
+        }
+
+        for (const block of document.querySelectorAll(".bilingual-block")) {
+            const lines = block.querySelectorAll(":scope > .lang-line");
+            if (lines[0]) {
+                lines[0].classList.add("lang-kz");
+            }
+            if (lines[1]) {
+                lines[1].classList.add("lang-en");
+            }
+        }
+
+        const languageToggle = document.getElementById("languageToggle");
+
+        function setLanguage(mode) {
+            document.body.dataset.lang = mode;
+            localStorage.setItem("oq-site-language", mode);
+            if (languageToggle) {
+                languageToggle.textContent = mode === "kz" ? "Eng" : "Qaz";
+            }
+        }
+
+        const savedLanguage = localStorage.getItem("oq-site-language") || "kz";
+        setLanguage(savedLanguage);
+
+        if (languageToggle) {
+            languageToggle.addEventListener("click", () => {
+                const nextLanguage = document.body.dataset.lang === "kz" ? "en" : "kz";
+                setLanguage(nextLanguage);
+            });
+        }
+
         const OQ_SITE_LINKS = {
             donate: "https://example.com/replace-with-stripe-or-zeffy-donation-link",
             registration: "https://example.com/replace-with-tally-registration-form",
