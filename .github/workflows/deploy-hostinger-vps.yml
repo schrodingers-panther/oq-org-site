@@ -1,6 +1,6 @@
 name: Deploy OQ.org HTML to Hostinger VPS
 
-on:
+"on":
   push:
     branches:
       - main
