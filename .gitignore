@@ -3,5 +3,8 @@
 # Local editor settings
 .vscode/
 
+# Deployment keys (never commit)
+.deploy_keys/
+
 # Optional local notes
 *.log
