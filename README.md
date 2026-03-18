@@ -29,6 +29,18 @@ Optional:
 
 See `DEPLOYMENT.md` for the full checklist.
 
+## Payments
+
+The Orlando Qazaqtary donate buttons are set up for a hosted payment link pattern.
+
+Recommended option:
+
+- Stripe Payment Link
+
+Setup guide:
+
+- `PAYMENT_SETUP.md`
+
 ## Create the new GitHub repo + push
 
 From this folder:

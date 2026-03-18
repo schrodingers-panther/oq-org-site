@@ -1680,16 +1680,34 @@
         }
 
         const OQ_SITE_LINKS = {
-            donate: "https://example.com/replace-with-stripe-or-zeffy-donation-link",
+            donate: "https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00",
             registration: "https://example.com/replace-with-tally-registration-form",
             volunteer: "https://example.com/replace-with-volunteer-interest-form",
             newsletter: "https://example.com/replace-with-brevo-newsletter-signup"
         };
 
+        function isConfiguredSiteLink(url) {
+            if (!url) {
+                return false;
+            }
+
+            if (!/^https?:\/\//i.test(url)) {
+                return false;
+            }
+
+            return !url.includes("example.com/replace-with-");
+        }
+
         for (const [key, url] of Object.entries(OQ_SITE_LINKS)) {
             const anchors = document.querySelectorAll(`[data-link="${key}"]`);
             for (const anchor of anchors) {
-                anchor.href = url;
+                if (isConfiguredSiteLink(url)) {
+                    anchor.href = url;
+                } else {
+                    anchor.href = "#support";
+                    anchor.removeAttribute("target");
+                    anchor.removeAttribute("rel");
+                }
             }
         }
     </script>
