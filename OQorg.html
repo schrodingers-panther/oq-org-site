@@ -45,6 +45,7 @@
             margin: 0;
             font-family: "Manrope", sans-serif;
             color: var(--ink);
+            overflow-x: hidden;
             background:
                 radial-gradient(circle at top, rgba(255, 214, 112, 0.42), transparent 34%),
                 linear-gradient(180deg, #fff7e8 0%, #f6edd7 42%, #f8f3e8 100%);
@@ -81,10 +82,15 @@
         .topbar {
             position: sticky;
             top: 0;
-            z-index: 30;
+            z-index: 80;
             backdrop-filter: blur(14px);
             background: rgba(7, 45, 39, 0.72);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        main[id],
+        section[id] {
+            scroll-margin-top: 108px;
         }
 
         .topbar-inner {
@@ -141,6 +147,7 @@
             align-items: center;
             gap: 8px;
             flex-wrap: wrap;
+            min-width: 0;
         }
 
         .nav a {
@@ -155,6 +162,30 @@
         .nav a:hover {
             background: rgba(255, 255, 255, 0.12);
             color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .nav-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border: 1px solid rgba(255, 248, 233, 0.2);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            font: inherit;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+
+        .nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.14);
             transform: translateY(-1px);
         }
 
@@ -347,6 +378,10 @@
 
         .btn:hover {
             transform: translateY(-2px);
+        }
+
+        .btn[data-link="donate"] {
+            touch-action: manipulation;
         }
 
         .btn-primary {
@@ -987,18 +1022,55 @@
         }
 
         @media (max-width: 760px) {
-            .topbar {
-                position: static;
+            .topbar-inner {
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                padding: 18px 0;
+                gap: 14px;
             }
 
-            .topbar-inner {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 18px 0;
+            .brand {
+                max-width: calc(100% - 148px);
+                min-width: 0;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                order: 2;
             }
 
             .lang-controls {
+                width: auto;
+                order: 3;
+                justify-content: flex-end;
+            }
+
+            .nav {
+                order: 4;
+                display: none;
                 width: 100%;
+                margin-top: 14px;
+                padding-top: 14px;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 6px;
+            }
+
+            .topbar.nav-open .nav {
+                display: flex;
+            }
+
+            .nav a {
+                width: 100%;
+                padding: 12px 14px;
+                background: rgba(255, 255, 255, 0.06);
+                white-space: normal;
+            }
+
+            .lang-controls {
+                margin-left: auto;
             }
 
             .lang-toggle {
@@ -1021,6 +1093,39 @@
 
             .hero-grid {
                 padding: 28px;
+            }
+
+            .hero-copy,
+            .hero-art {
+                min-width: 0;
+            }
+
+            .hero-copy h1 {
+                font-size: clamp(2.7rem, 13vw, 4rem);
+            }
+
+            .hero-copy p,
+            .section-heading p,
+            .card p,
+            .quote-card p,
+            .subdomain-panel p,
+            .form-card p,
+            .faq-card p,
+            .footer-card p {
+                font-size: 0.98rem;
+            }
+
+            .hero-actions {
+                gap: 12px;
+            }
+
+            .hero-actions .btn,
+            .action-item .btn {
+                width: 100%;
+            }
+
+            .quote-card blockquote {
+                font-size: clamp(1.7rem, 9vw, 2.4rem);
             }
 
             .hero-stats,
@@ -1050,6 +1155,107 @@
             .oq-logo img {
                 width: min(100%, 360px);
             }
+
+            .action-item,
+            .event-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .showcase-note {
+                position: static;
+                width: 100%;
+                margin-top: 18px;
+            }
+
+            .logo-showcase {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .shell,
+            .topbar-inner {
+                width: min(var(--container), calc(100% - 28px));
+            }
+
+            main[id],
+            section[id] {
+                scroll-margin-top: 96px;
+            }
+
+            .brand {
+                gap: 12px;
+                max-width: calc(100% - 132px);
+            }
+
+            .brand-copy strong {
+                font-size: 0.84rem;
+                letter-spacing: 0.14em;
+            }
+
+            .brand-copy span {
+                font-size: 0.62rem;
+                letter-spacing: 0.12em;
+            }
+
+            .hero {
+                padding: 30px 0 18px;
+            }
+
+            .hero-panel {
+                border-radius: 28px;
+            }
+
+            .hero-grid {
+                gap: 24px;
+                padding: 22px;
+            }
+
+            .hero-copy h1 {
+                margin-top: 16px;
+                font-size: clamp(2.25rem, 12vw, 3.2rem);
+            }
+
+            .hero-stats {
+                gap: 10px;
+            }
+
+            .hero-stat,
+            .card,
+            .quote-card,
+            .subdomain-panel,
+            .form-card,
+            .faq-card,
+            .footer-card {
+                padding: 18px;
+            }
+
+            .showcase-card {
+                padding: 22px;
+            }
+
+            .oq-logo {
+                min-height: 220px;
+            }
+
+            .oq-logo img {
+                width: min(100%, 280px);
+            }
+
+            .btn {
+                min-height: 50px;
+                padding: 0 18px;
+                font-size: 0.88rem;
+            }
+
+            .section-heading h2 {
+                font-size: clamp(2rem, 12vw, 2.8rem);
+            }
+
+            .subdomain-link {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -1065,7 +1271,8 @@
                     <span>Kazakh Community in Orlando</span>
                 </div>
             </a>
-            <nav class="nav" aria-label="Primary">
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav">Menu</button>
+            <nav class="nav" id="primaryNav" aria-label="Primary">
                 <a href="#about">Біз туралы<span class="lang-divider" aria-hidden="true"></span>About</a>
                 <a href="#events">Іс-шаралар<span class="lang-divider" aria-hidden="true"></span>Events</a>
                 <a href="#subdomains">Субдомендер<span class="lang-divider" aria-hidden="true"></span>Subdomains</a>
@@ -1104,7 +1311,7 @@
                                 </div>
                             </div>
                             <div class="hero-actions fade-up delay-2">
-                                <a class="btn btn-primary" data-link="donate" href="#support">Қауымға қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Support the community</a>
+                                <a class="btn btn-primary" data-link="donate" href="https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00" target="_blank" rel="noreferrer">Қауымға қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Support the community</a>
                                 <a class="btn btn-secondary" href="#subdomains">2026 сайттарын көру<span class="lang-divider" aria-hidden="true"></span>Explore 2026 event sites</a>
                             </div>
                             <div class="hero-stats fade-up delay-3">
@@ -1330,7 +1537,7 @@
                         <a class="subdomain-link" href="https://nauryz.orlandoqazaqtary.org">nauryz.orlandoqazaqtary.org</a>
                         <a class="subdomain-link" href="https://cup.orlandoqazaqtary.org">cup.orlandoqazaqtary.org</a>
                         <div class="hero-actions" style="margin-top: 22px;">
-                            <a class="btn btn-primary" data-link="donate" href="#support">Қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Donate</a>
+                            <a class="btn btn-primary" data-link="donate" href="https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00" target="_blank" rel="noreferrer">Қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Donate</a>
                             <a class="btn btn-secondary" href="https://cup.orlandoqazaqtary.org">Наурыз Кубогы 2026 сайты<span class="lang-divider" aria-hidden="true"></span>Visit Nauryz Cup 2026</a>
                         </div>
                     </article>
@@ -1515,7 +1722,7 @@
                                     <div class="lang-line">Support Orlando Qazaqtary through a secure online donation page.</div>
                                 </div>
                                 <div class="hero-actions" style="margin-top: 18px;">
-                                    <a class="btn btn-primary" data-link="donate" href="#" target="_blank" rel="noreferrer">Қазір қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Donate Now</a>
+                                    <a class="btn btn-primary" data-link="donate" href="https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00" target="_blank" rel="noreferrer">Қазір қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Donate Now</a>
                                 </div>
                             </div>
                             <div class="card" style="padding: 18px;">
@@ -1660,6 +1867,23 @@
         }
 
         const languageToggle = document.getElementById("languageToggle");
+        const navToggle = document.getElementById("navToggle");
+        const topbar = document.querySelector(".topbar");
+
+        function closeMobileNav() {
+            if (topbar) {
+                topbar.classList.remove("nav-open");
+            }
+            if (navToggle) {
+                navToggle.setAttribute("aria-expanded", "false");
+            }
+        }
+
+        function syncMobileNavState() {
+            if (!window.matchMedia("(max-width: 760px)").matches) {
+                closeMobileNav();
+            }
+        }
 
         function setLanguage(mode) {
             document.body.dataset.lang = mode;
@@ -1678,6 +1902,22 @@
                 setLanguage(nextLanguage);
             });
         }
+
+        if (navToggle && topbar) {
+            navToggle.addEventListener("click", () => {
+                const isOpen = topbar.classList.toggle("nav-open");
+                navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            });
+        }
+
+        for (const navLink of document.querySelectorAll(".nav a")) {
+            navLink.addEventListener("click", () => {
+                closeMobileNav();
+            });
+        }
+
+        window.addEventListener("resize", syncMobileNavState);
+        syncMobileNavState();
 
         const OQ_SITE_LINKS = {
             donate: "https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00",
@@ -1703,10 +1943,20 @@
             for (const anchor of anchors) {
                 if (isConfiguredSiteLink(url)) {
                     anchor.href = url;
+                    if (key === "donate") {
+                        anchor.target = "_blank";
+                        anchor.rel = "noreferrer";
+                    }
                 } else {
-                    anchor.href = "#support";
-                    anchor.removeAttribute("target");
-                    anchor.removeAttribute("rel");
+                    if (key === "donate") {
+                        anchor.href = "https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00";
+                        anchor.target = "_blank";
+                        anchor.rel = "noreferrer";
+                    } else {
+                        anchor.href = "#support";
+                        anchor.removeAttribute("target");
+                        anchor.removeAttribute("rel");
+                    }
                 }
             }
         }
