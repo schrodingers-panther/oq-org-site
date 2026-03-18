@@ -134,6 +134,8 @@ For VPS:
 3. Push to `main`.
 4. GitHub Actions uploads a deploy bundle to the VPS via SCP to `/var/www/orlandoqazaqtary.org/public`.
 
+Note: if you can’t manually run the workflow from GitHub UI/CLI, any push to `main` that changes one of the watched files (for example this `DEPLOYMENT.md`) will trigger the deploy.
+
 If you set `OQORG_REMOTE_DIR`, the workflow deploys to that directory instead.
 
 ## New repo requirement
