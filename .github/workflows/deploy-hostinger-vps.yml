@@ -7,8 +7,8 @@ name: Deploy OQ.org HTML to Hostinger VPS
     paths:
       - OQorg.html
       - index.html
-      - *.png
-      - *.svg
+      - '*.png'
+      - '*.svg'
       - .github/workflows/deploy-hostinger-vps.yml
       - DEPLOYMENT.md
   workflow_dispatch:
