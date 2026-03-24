@@ -7,6 +7,9 @@ name: Deploy OQ.org HTML to Hostinger VPS
     paths:
       - OQorg.html
       - index.html
+      - site.css
+      - site.js
+      - 'pages/**'
       - '*.png'
       - '*.svg'
       - .github/workflows/deploy-hostinger-vps.yml
@@ -43,6 +46,12 @@ jobs:
           mkdir -p "${{ env.OUTPUT_DIR }}"
           cp "${{ env.SOURCE_FILE }}" "${{ env.OUTPUT_DIR }}/${{ env.REMOTE_NAME }}"
           cp "${{ env.SOURCE_FILE }}" "${{ env.OUTPUT_DIR }}/OQorg.html"
+          cp -f index.html "${{ env.OUTPUT_DIR }}/index.html"
+          cp -f site.css "${{ env.OUTPUT_DIR }}/site.css"
+          cp -f site.js "${{ env.OUTPUT_DIR }}/site.js"
+          if [ -d pages ]; then
+            cp -r pages "${{ env.OUTPUT_DIR }}/pages"
+          fi
           cp -f OQ_logo_clean_social_1024_recolored.png "${{ env.OUTPUT_DIR }}/"
           for f in *.svg *.png; do
             if [ -f "$f" ]; then
@@ -84,6 +93,8 @@ jobs:
             set -e
             ls -la "${{ env.REMOTE_DIR }}"
             test -f "${{ env.REMOTE_DIR }}/${{ env.REMOTE_NAME }}"
+            test -f "${{ env.REMOTE_DIR }}/site.css"
+            test -f "${{ env.REMOTE_DIR }}/site.js"
             grep -m1 -i "<title>" "${{ env.REMOTE_DIR }}/${{ env.REMOTE_NAME }}" || true
             test -f "${{ env.REMOTE_DIR }}/OQ_logo_clean_social_1024_recolored.png"
 
