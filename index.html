@@ -1,136 +1,2206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orlando Qazaqtary</title>
-  <meta name="description" content="Simple landing page for Orlando Qazaqtary with events, contact info, and community category pages.">
-  <link rel="stylesheet" href="site.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orlando Qazaqtary</title>
+    <meta
+        name="description"
+        content="Orlando Qazaqtary is the official online home of the Kazakh community in Orlando, featuring community news, cultural events, support, and dedicated access to Nauryz 2026 and Nauryz Cup 2026."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f8f0dc;
+            --sand: #edd7a2;
+            --gold: #d6ae57;
+            --gold-deep: #b8892d;
+            --teal: #1d9eb0;
+            --teal-deep: #0f6977;
+            --emerald: #0e5b4d;
+            --forest: #083a33;
+            --ink: #13211d;
+            --paper: rgba(255, 251, 240, 0.84);
+            --paper-strong: rgba(255, 253, 248, 0.94);
+            --white: #ffffff;
+            --shadow-lg: 0 24px 60px rgba(10, 44, 36, 0.18);
+            --shadow-md: 0 14px 36px rgba(11, 48, 40, 0.14);
+            --radius-xl: 32px;
+            --radius-lg: 22px;
+            --radius-md: 16px;
+            --container: 1180px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Manrope", sans-serif;
+            color: var(--ink);
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at top, rgba(255, 214, 112, 0.42), transparent 34%),
+                linear-gradient(180deg, #fff7e8 0%, #f6edd7 42%, #f8f3e8 100%);
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 15%, rgba(29, 158, 176, 0.12), transparent 20%),
+                radial-gradient(circle at 80% 12%, rgba(214, 174, 87, 0.18), transparent 22%),
+                radial-gradient(circle at 50% 90%, rgba(14, 91, 77, 0.09), transparent 26%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .shell {
+            width: min(var(--container), calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 80;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(180deg, rgba(6, 40, 36, 0.92), rgba(9, 52, 47, 0.78));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 18px 34px rgba(4, 29, 26, 0.18);
+        }
+
+        .topbar::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 224, 158, 0.48), transparent);
+        }
+
+        main[id],
+        section[id] {
+            scroll-margin-top: 108px;
+        }
+
+        .topbar-inner {
+            width: min(var(--container), calc(100% - 40px));
+            margin: 0 auto;
+            min-height: 88px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            padding: 12px 0;
+            position: relative;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            min-width: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-mark {
+            width: 74px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-mark img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 6px 12px rgba(2, 21, 20, 0.16));
+        }
+
+        .brand-copy strong,
+        .brand-copy span {
+            display: block;
+        }
+
+        .brand-copy strong {
+            color: var(--white);
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .brand-copy span {
+            color: rgba(255, 248, 233, 0.74);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            min-width: 0;
+            margin-left: auto;
+            justify-content: flex-end;
+        }
+
+        .nav a {
+            display: inline-flex;
+            align-items: center;
+            color: rgba(255, 251, 243, 0.9);
+            font-size: 0.94rem;
+            font-weight: 700;
+            min-height: 44px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.04);
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 240, 211, 0.16);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .nav-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            padding: 0;
+            border: 1px solid rgba(255, 248, 233, 0.2);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            cursor: pointer;
+            box-shadow: 0 12px 24px rgba(4, 29, 26, 0.16);
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+
+        .nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.14);
+            transform: translateY(-1px);
+        }
+
+        .nav-toggle-icon {
+            display: flex;
+            width: 20px;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-toggle-bar {
+            width: 100%;
+            height: 2px;
+            border-radius: 999px;
+            background: currentColor;
+            transform-origin: center;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .topbar.nav-open .nav-toggle-bar:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .topbar.nav-open .nav-toggle-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .topbar.nav-open .nav-toggle-bar:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .nav-utility {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 10px;
+            padding-left: 14px;
+            border-left: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .nav-utility-label {
+            display: none;
+            color: rgba(255, 247, 228, 0.72);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .lang-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border: 1px solid rgba(255, 248, 233, 0.18);
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
+            color: rgba(255, 251, 243, 0.88);
+            font: inherit;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(4, 29, 26, 0.12);
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+
+        .lang-toggle:hover {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(255, 240, 211, 0.24);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .lang-divider {
+            display: inline-block;
+            width: 1px;
+            height: 0.9em;
+            margin: 0 0.55em;
+            background: currentColor;
+            opacity: 0.38;
+            vertical-align: middle;
+        }
+
+        .bilingual-block {
+            display: grid;
+            gap: 10px;
+        }
+
+        .bilingual-block .lang-line + .lang-line {
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 244, 212, 0.22);
+        }
+
+        body[data-lang="kz"] .lang-en,
+        body[data-lang="kz"] .lang-divider {
+            display: none !important;
+        }
+
+        body[data-lang="en"] .lang-kz,
+        body[data-lang="en"] .lang-divider {
+            display: none !important;
+        }
+
+        body[data-lang="kz"] .bilingual-block,
+        body[data-lang="en"] .bilingual-block {
+            gap: 0;
+        }
+
+        body[data-lang="kz"] .bilingual-block .lang-line,
+        body[data-lang="en"] .bilingual-block .lang-line {
+            padding-top: 0;
+            border-top: 0;
+        }
+
+        .hero {
+            padding: 52px 0 34px;
+        }
+
+        .hero-panel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 40px;
+            background:
+                linear-gradient(130deg, rgba(8, 58, 51, 0.96), rgba(23, 111, 113, 0.9) 56%, rgba(246, 202, 96, 0.36)),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(226, 194, 126, 0.35);
+        }
+
+        .hero-panel::before,
+        .hero-panel::after {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            filter: blur(10px);
+            opacity: 0.36;
+            pointer-events: none;
+        }
+
+        .hero-panel::before {
+            top: -180px;
+            right: -110px;
+            background: radial-gradient(circle, rgba(255, 212, 109, 0.95), transparent 66%);
+        }
+
+        .hero-panel::after {
+            bottom: -180px;
+            left: -110px;
+            background: radial-gradient(circle, rgba(62, 205, 227, 0.58), transparent 68%);
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 36px;
+            padding: 42px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 247, 228, 0.12);
+            border: 1px solid rgba(248, 217, 152, 0.25);
+            color: #fff5d6;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .hero-copy h1,
+        .section-heading h2,
+        .section-heading h3,
+        .panel-title {
+            margin: 0;
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 700;
+            line-height: 0.95;
+        }
+
+        .hero-copy h1 {
+            margin-top: 22px;
+            color: var(--white);
+            font-size: clamp(3.3rem, 5vw, 5.8rem);
+            text-shadow: 0 8px 26px rgba(2, 21, 20, 0.3);
+        }
+
+        .hero-copy h1 span {
+            display: block;
+            color: #ffe39c;
+            font-size: 0.52em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .hero-copy p {
+            max-width: 610px;
+            margin: 20px 0 0;
+            color: rgba(255, 248, 236, 0.92);
+            font-size: 1.08rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 54px;
+            padding: 0 24px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn[data-link="donate"] {
+            touch-action: manipulation;
+        }
+
+        .btn-primary {
+            color: var(--forest);
+            background: linear-gradient(135deg, #f8d684 0%, #d9ab4d 100%);
+            box-shadow: 0 14px 24px rgba(214, 174, 87, 0.24);
+        }
+
+        .btn-secondary {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 241, 211, 0.25);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .hero-stat {
+            padding: 16px 18px;
+            border-radius: 18px;
+            background: rgba(255, 251, 243, 0.12);
+            border: 1px solid rgba(255, 239, 200, 0.18);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-stat strong,
+        .hero-stat span {
+            display: block;
+        }
+
+        .hero-stat strong {
+            color: #ffeab9;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .hero-stat span {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .hero-art {
+            position: relative;
+        }
+
+        .logo-showcase {
+            position: relative;
+            min-height: 450px;
+            border-radius: 32px;
+            padding: 26px;
+            background: linear-gradient(180deg, rgba(255, 252, 245, 0.15), rgba(255, 252, 245, 0.05));
+            border: 1px solid rgba(255, 244, 217, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+        }
+
+        .logo-showcase::before {
+            content: "";
+            position: absolute;
+            inset: 20px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 245, 214, 0.12);
+        }
+
+        .oq-logo {
+            position: relative;
+            min-height: 300px;
+            display: grid;
+            place-items: center;
+        }
+
+        .oq-logo img {
+            width: min(100%, 470px);
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 16px 30px rgba(2, 21, 20, 0.2));
+        }
+
+        .showcase-note {
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+            width: min(260px, calc(100% - 48px));
+            padding: 18px 18px 16px;
+            border-radius: 22px;
+            background: rgba(255, 251, 241, 0.92);
+            color: var(--forest);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(214, 174, 87, 0.34);
+        }
+
+        .showcase-note strong {
+            display: block;
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold-deep);
+        }
+
+        .showcase-note p {
+            margin: 8px 0 0;
+            font-size: 0.96rem;
+            font-weight: 700;
+            line-height: 1.45;
+        }
+
+        main section {
+            padding: 40px 0;
+        }
+
+        .section-heading {
+            max-width: 760px;
+            margin-bottom: 26px;
+        }
+
+        .kicker {
+            color: var(--gold-deep);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2.5rem, 4vw, 4.2rem);
+            color: var(--forest);
+            margin-top: 10px;
+        }
+
+        .section-heading p {
+            margin: 12px 0 0;
+            font-size: 1.04rem;
+            color: rgba(19, 33, 29, 0.76);
+        }
+
+        .section-heading .bilingual-block .lang-line + .lang-line,
+        .card .bilingual-block .lang-line + .lang-line,
+        .quote-card .bilingual-block .lang-line + .lang-line,
+        .showcase-card .bilingual-block .lang-line + .lang-line,
+        .subdomain-panel .bilingual-block .lang-line + .lang-line,
+        .form-card .bilingual-block .lang-line + .lang-line,
+        .faq-card .bilingual-block .lang-line + .lang-line,
+        .footer-card .bilingual-block .lang-line + .lang-line {
+            border-top-color: rgba(19, 33, 29, 0.12);
+        }
+
+        .info-grid,
+        .events-grid,
+        .subdomain-grid,
+        .feature-grid,
+        .gallery-grid,
+        .partners-grid,
+        .support-grid,
+        .footer-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .info-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .card,
+        .quote-card,
+        .subdomain-panel,
+        .form-card,
+        .faq-card,
+        .footer-card {
+            border-radius: var(--radius-lg);
+            background: rgba(255, 252, 245, 0.84);
+            border: 1px solid rgba(213, 185, 130, 0.28);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card {
+            padding: 24px;
+            background: linear-gradient(180deg, rgba(255, 254, 251, 0.88), rgba(248, 240, 220, 0.88));
+        }
+
+        .card .label {
+            color: var(--gold-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        .card h3,
+        .quote-card h3,
+        .subdomain-panel h3,
+        .form-card h3,
+        .faq-card h3,
+        .footer-card h3 {
+            margin: 10px 0 8px;
+            font-size: 1.3rem;
+            color: var(--forest);
+        }
+
+        .card p,
+        .quote-card p,
+        .subdomain-panel p,
+        .form-card p,
+        .faq-card p,
+        .footer-card p {
+            margin: 0;
+            color: rgba(19, 33, 29, 0.8);
+        }
+
+        .quote-wrap {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 22px;
+        }
+
+        .quote-card {
+            padding: 30px;
+        }
+
+        .quote-card blockquote {
+            margin: 0;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            line-height: 1.02;
+            color: var(--forest);
+        }
+
+        .quote-card cite {
+            display: block;
+            margin-top: 18px;
+            font-style: normal;
+            font-weight: 800;
+            color: var(--gold-deep);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .quote-list {
+            margin: 18px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .quote-list li {
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: rgba(14, 91, 77, 0.06);
+            font-weight: 700;
+            color: var(--forest);
+        }
+
+        .showcase-card {
+            position: relative;
+            min-height: 100%;
+            border-radius: 28px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at top right, rgba(255, 215, 126, 0.32), transparent 36%),
+                linear-gradient(180deg, rgba(8, 58, 51, 0.94), rgba(13, 89, 78, 0.92));
+            box-shadow: var(--shadow-lg);
+            padding: 30px;
+            color: var(--white);
+        }
+
+        .showcase-card strong {
+            display: block;
+            color: #ffd98f;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.78rem;
+            margin-bottom: 8px;
+        }
+
+        .showcase-card p {
+            margin: 0;
+            color: rgba(255, 248, 236, 0.86);
+            font-weight: 600;
+        }
+
+        .showcase-stack {
+            display: grid;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .showcase-pill {
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 248, 224, 0.12);
+        }
+
+        .events-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .event-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-date {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            background: rgba(14, 91, 77, 0.08);
+            color: var(--forest);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .event-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(19, 33, 29, 0.1);
+            color: rgba(19, 33, 29, 0.72);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .subdomain-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .subdomain-panel {
+            padding: 30px;
+        }
+
+        .subdomain-panel.dark {
+            background:
+                radial-gradient(circle at top right, rgba(233, 191, 143, 0.22), transparent 34%),
+                linear-gradient(135deg, #161513 0%, #2c241d 100%);
+            color: var(--white);
+            border: none;
+        }
+
+        .subdomain-panel.dark h3,
+        .subdomain-panel.dark p {
+            color: var(--white);
+        }
+
+        .subdomain-panel.dark p {
+            color: rgba(255, 246, 236, 0.76);
+        }
+
+        .subdomain-link {
+            display: block;
+            margin-top: 18px;
+            color: var(--forest);
+            font-size: 1.16rem;
+            font-weight: 800;
+            word-break: break-word;
+        }
+
+        .subdomain-list {
+            display: grid;
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .subdomain-item {
+            padding: 16px 18px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .subdomain-item strong {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #ffeab9;
+        }
+
+        .subdomain-item span {
+            display: block;
+            margin-top: 6px;
+            color: rgba(255, 248, 236, 0.86);
+        }
+
+        .feature-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .feature-card {
+            min-height: 240px;
+        }
+
+        .gallery-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .gallery-card {
+            min-height: 240px;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(8, 58, 51, 0.96), rgba(13, 89, 78, 0.9));
+        }
+
+        .gallery-visual {
+            min-height: 160px;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 219, 130, 0.65), transparent 24%),
+                radial-gradient(circle at 78% 18%, rgba(53, 208, 228, 0.55), transparent 22%),
+                linear-gradient(135deg, rgba(255, 245, 214, 0.16), rgba(255, 255, 255, 0.02)),
+                linear-gradient(140deg, #0b4941, #12808b);
+        }
+
+        .gallery-copy {
+            padding: 20px;
+            color: var(--white);
+        }
+
+        .gallery-copy h3 {
+            color: var(--white);
+            margin: 0 0 8px;
+        }
+
+        .gallery-copy p {
+            color: rgba(255, 248, 236, 0.8);
+            font-size: 0.92rem;
+        }
+
+        .partners-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .partner-card {
+            display: grid;
+            place-items: center;
+            min-height: 140px;
+            text-align: center;
+        }
+
+        .partner-mark {
+            width: 74px;
+            height: 74px;
+            border-radius: 22px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 16px;
+            background: linear-gradient(145deg, rgba(29, 158, 176, 0.16), rgba(214, 174, 87, 0.24));
+            color: var(--forest);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+
+        .support-grid {
+            grid-template-columns: 1.05fr 0.95fr;
+        }
+
+        .form-card {
+            padding: 28px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 0.84rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--forest);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid rgba(19, 33, 29, 0.14);
+            border-radius: 14px;
+            padding: 14px 15px;
+            font: inherit;
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .form-note {
+            margin-top: 14px;
+            color: rgba(19, 33, 29, 0.7);
+            font-size: 0.92rem;
+        }
+
+        .action-list {
+            display: grid;
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 18px;
+            border-radius: 16px;
+            background: rgba(14, 91, 77, 0.06);
+            border: 1px solid rgba(19, 33, 29, 0.08);
+        }
+
+        .action-item strong {
+            display: block;
+            color: var(--forest);
+            font-size: 1rem;
+        }
+
+        .action-item span {
+            display: block;
+            margin-top: 4px;
+            color: rgba(19, 33, 29, 0.72);
+            font-size: 0.92rem;
+        }
+
+        .faq-card {
+            padding: 28px;
+        }
+
+        .faq-item + .faq-item {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(19, 33, 29, 0.1);
+        }
+
+        .faq-item strong {
+            display: block;
+            color: var(--forest);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            padding: 16px 0 42px;
+        }
+
+        .footer-grid {
+            grid-template-columns: 1.1fr 0.9fr 0.9fr;
+        }
+
+        .footer-card {
+            padding: 24px;
+        }
+
+        .footer-card ul {
+            margin: 16px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .footer-card li {
+            color: rgba(19, 33, 29, 0.78);
+            font-weight: 600;
+        }
+
+        .footer-legal {
+            margin-top: 26px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(19, 33, 29, 0.1);
+            font-size: 0.92rem;
+            color: rgba(19, 33, 29, 0.7);
+            text-align: center;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(22px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1080px) {
+            .hero-grid,
+            .quote-wrap,
+            .subdomain-grid,
+            .support-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid,
+            .feature-grid,
+            .partners-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .events-grid,
+            .gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .topbar-inner {
+                flex-wrap: nowrap;
+                align-items: center;
+                justify-content: space-between;
+                padding: 14px 0;
+                gap: 14px;
+            }
+
+            .brand {
+                max-width: calc(100% - 76px);
+                min-width: 0;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                flex: 0 0 auto;
+            }
+
+            .nav {
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                right: 0;
+                width: auto;
+                margin-top: 0;
+                padding: 14px;
+                border: 1px solid rgba(255, 248, 233, 0.12);
+                border-top: none;
+                border-radius: 24px;
+                background: linear-gradient(180deg, rgba(9, 52, 47, 0.96), rgba(7, 42, 39, 0.94));
+                box-shadow: 0 20px 40px rgba(4, 29, 26, 0.22);
+                backdrop-filter: blur(18px);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transform: translateY(-10px);
+                transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+            }
+
+            .topbar.nav-open .nav {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+
+            .nav a {
+                width: 100%;
+                padding: 14px 16px;
+                background: rgba(255, 255, 255, 0.06);
+                border-color: rgba(255, 255, 255, 0.08);
+                white-space: normal;
+            }
+
+            .nav-utility {
+                margin: 8px 0 0;
+                padding: 16px 0 0;
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .nav-utility-label {
+                display: block;
+            }
+
+            .lang-toggle {
+                width: 100%;
+                min-height: 48px;
+                padding: 0 16px;
+                justify-content: center;
+                font-size: 0.76rem;
+            }
+
+            .lang-divider {
+                margin: 0 0.34em;
+            }
+
+            .bilingual-block {
+                gap: 7px;
+            }
+
+            .bilingual-block .lang-line + .lang-line {
+                padding-top: 7px;
+            }
+
+            .hero-grid {
+                padding: 28px;
+            }
+
+            .hero-copy,
+            .hero-art {
+                min-width: 0;
+            }
+
+            .hero-copy h1 {
+                font-size: clamp(2.7rem, 13vw, 4rem);
+            }
+
+            .hero-copy p,
+            .section-heading p,
+            .card p,
+            .quote-card p,
+            .subdomain-panel p,
+            .form-card p,
+            .faq-card p,
+            .footer-card p {
+                font-size: 0.98rem;
+            }
+
+            .hero-actions {
+                gap: 12px;
+            }
+
+            .hero-actions .btn,
+            .action-item .btn {
+                width: 100%;
+            }
+
+            .quote-card blockquote {
+                font-size: clamp(1.7rem, 9vw, 2.4rem);
+            }
+
+            .hero-stats,
+            .info-grid,
+            .events-grid,
+            .feature-grid,
+            .gallery-grid,
+            .partners-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-showcase,
+            .card,
+            .quote-card,
+            .subdomain-panel,
+            .form-card,
+            .faq-card,
+            .footer-card {
+                padding: 22px;
+            }
+
+            .brand-mark {
+                width: 66px;
+            }
+
+            .oq-logo img {
+                width: min(100%, 360px);
+            }
+
+            .action-item,
+            .event-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .showcase-note {
+                position: static;
+                width: 100%;
+                margin-top: 18px;
+            }
+
+            .logo-showcase {
+                min-height: auto;
+            }
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown > summary {
+            display: inline-flex;
+            align-items: center;
+            color: rgba(255, 251, 243, 0.9);
+            font-size: 0.94rem;
+            font-weight: 700;
+            min-height: 44px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            list-style: none;
+            font-family: inherit;
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+
+        .nav-dropdown > summary::-webkit-details-marker { display: none; }
+        .nav-dropdown > summary::marker { display: none; }
+
+        .nav-dropdown > summary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 240, 211, 0.16);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            min-width: 290px;
+            padding: 8px;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(9, 52, 47, 0.98), rgba(7, 42, 39, 0.96));
+            border: 1px solid rgba(255, 248, 233, 0.12);
+            box-shadow: 0 20px 40px rgba(4, 29, 26, 0.28);
+            backdrop-filter: blur(18px);
+            display: grid;
+            gap: 4px;
+            z-index: 100;
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 10px 14px;
+            border-radius: 14px;
+            color: rgba(255, 251, 243, 0.86);
+            font-size: 0.88rem;
+            font-weight: 600;
+            background: transparent;
+            border: 1px solid transparent;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+
+        @media (max-width: 760px) {
+            .nav-dropdown {
+                position: static;
+            }
+
+            .nav-dropdown > summary {
+                width: 100%;
+                padding: 14px 16px;
+                border-radius: 14px;
+                background: rgba(255, 255, 255, 0.06);
+                border-color: rgba(255, 255, 255, 0.08);
+            }
+
+            .nav-dropdown-menu {
+                position: static;
+                min-width: 0;
+                border-radius: 14px;
+                margin-top: 6px;
+                box-shadow: none;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                background: rgba(255, 255, 255, 0.04);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .shell,
+            .topbar-inner {
+                width: min(var(--container), calc(100% - 28px));
+            }
+
+            main[id],
+            section[id] {
+                scroll-margin-top: 96px;
+            }
+
+            .brand {
+                gap: 12px;
+                max-width: calc(100% - 72px);
+            }
+
+            .brand-copy strong {
+                font-size: 0.84rem;
+                letter-spacing: 0.14em;
+            }
+
+            .brand-copy span {
+                font-size: 0.62rem;
+                letter-spacing: 0.12em;
+            }
+
+            .hero {
+                padding: 30px 0 18px;
+            }
+
+            .hero-panel {
+                border-radius: 28px;
+            }
+
+            .hero-grid {
+                gap: 24px;
+                padding: 22px;
+            }
+
+            .hero-copy h1 {
+                margin-top: 16px;
+                font-size: clamp(2.25rem, 12vw, 3.2rem);
+            }
+
+            .hero-stats {
+                gap: 10px;
+            }
+
+            .hero-stat,
+            .card,
+            .quote-card,
+            .subdomain-panel,
+            .form-card,
+            .faq-card,
+            .footer-card {
+                padding: 18px;
+            }
+
+            .showcase-card {
+                padding: 22px;
+            }
+
+            .oq-logo {
+                min-height: 220px;
+            }
+
+            .oq-logo img {
+                width: min(100%, 280px);
+            }
+
+            .btn {
+                min-height: 50px;
+                padding: 0 18px;
+                font-size: 0.88rem;
+            }
+
+            .section-heading h2 {
+                font-size: clamp(2rem, 12vw, 2.8rem);
+            }
+
+            .subdomain-link {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
-<body>
-  <header class="topbar">
-    <div class="shell topbar-inner">
-      <a class="brand" href="index.html">
-        <img class="brand-logo" src="orlando-qazaqtary-logo-recolored.png" alt="Orlando Qazaqtary logo">
-        <span class="brand-copy">
-          <strong>Orlando Qazaqtary</strong>
-          <span>Community home</span>
-        </span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" data-nav-toggle>Menu</button>
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="#events">Events</a>
-        <a class="nav-link" href="#contact">Contact</a>
-        <details class="nav-dropdown">
-          <summary>Other</summary>
-          <div class="nav-dropdown-menu">
-            <a href="pages/is-sharalar.html">İS-ŞARALAR</a>
-            <a href="pages/jalpy-chat.html">Jalpy Chat</a>
-            <a href="pages/eriktiler-jane-demeushiler.html">Eriktiler jäne Demeuşiler</a>
-            <a href="pages/gylym-bilim-jobalary-maseleleri.html">ĞYLYM/BİLİM Jobalary/Mäseleleri</a>
-            <a href="pages/oraza-2026.html">Oraza, 2026</a>
-            <a href="pages/business-jobalary-maseleleri.html">BUSINESS Jobalary/Mäseleleri</a>
-            <a href="pages/komekjardem-asarlatu.html">KÖMEKJÄRDEM/ASARLATU</a>
-            <a href="pages/zan-maseleleri.html">ZAN mäseleleri</a>
-            <a href="pages/orlando-qazaq-ortalygy.html">ORLANDO Qazaq Ortalyğy</a>
-            <a href="pages/florida-qazaq-ortalygy.html">Florida Qazaq Ortalyğy</a>
-            <a href="pages/jumys.html">Jumys</a>
-            <a href="pages/densaulyq-jobalary-maseleleri.html">DENSAULYQ Jobalary/Mäseleleri</a>
-            <a href="pages/sport-jobalary.html">SPORT Jobalary</a>
-            <a href="pages/qarzhy-maseleleri.html">QARZHY mäseleleri</a>
-            <a href="pages/kasipker-aielder.html">Käsipker Äielder</a>
-            <a href="pages/salemdeme.html">Sälemdeme</a>
-          </div>
-        </details>
-      </nav>
-    </div>
-  </header>
+<body data-lang="kz">
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="#top" aria-label="Orlando Qazaqtary home">
+                <div class="brand-mark" aria-hidden="true">
+                    <img src="OQ_logo_clean_social_1024_recolored.png" alt="Orlando Qazaqtary logo">
+                </div>
+                <div class="brand-copy">
+                    <strong>Orlando Qazaqtary</strong>
+                    <span>Kazakh Community in Orlando</span>
+                </div>
+            </a>
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+                <span class="nav-toggle-icon" aria-hidden="true">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                </span>
+                <span class="visually-hidden">Menu</span>
+            </button>
+            <nav class="nav" id="primaryNav" aria-label="Primary">
+                <a href="#about">Біз туралы<span class="lang-divider" aria-hidden="true"></span>About</a>
+                <a href="#events">Іс-шаралар<span class="lang-divider" aria-hidden="true"></span>Events</a>
+                <details class="nav-dropdown">
+                    <summary>Басқа<span class="lang-divider" aria-hidden="true"></span>Other</summary>
+                    <div class="nav-dropdown-menu">
+                        <a href="pages/is-sharalar.html">İS-ŞARALAR</a>
+                        <a href="pages/jalpy-chat.html">Jalpy Chat</a>
+                        <a href="pages/eriktiler-jane-demeushiler.html">Eriktiler jäne Demeuşiler</a>
+                        <a href="pages/gylym-bilim-jobalary-maseleleri.html">ĞYLYM/BİLİM Jobalary/Mäseleleri</a>
+                        <a href="pages/oraza-2026.html">Oraza, 2026</a>
+                        <a href="pages/business-jobalary-maseleleri.html">BUSINESS Jobalary/Mäseleleri</a>
+                        <a href="pages/komekjardem-asarlatu.html">KÖMEKJÄRDEM/ASARLATU</a>
+                        <a href="pages/zan-maseleleri.html">ZAN mäseleleri</a>
+                        <a href="pages/orlando-qazaq-ortalygy.html">ORLANDO Qazaq Ortalyğy</a>
+                        <a href="pages/florida-qazaq-ortalygy.html">Florida Qazaq Ortalyğy</a>
+                        <a href="pages/jumys.html">Jumys</a>
+                        <a href="pages/densaulyq-jobalary-maseleleri.html">DENSAULYQ Jobalary/Mäseleleri</a>
+                        <a href="pages/sport-jobalary.html">SPORT Jobalary</a>
+                        <a href="pages/qarzhy-maseleleri.html">QARZHY mäseleleri</a>
+                        <a href="pages/kasipker-aielder.html">Käsipker Äielder</a>
+                        <a href="pages/salemdeme.html">Sälemdeme</a>
+                    </div>
+                </details>
+                <a href="#community">Қауым<span class="lang-divider" aria-hidden="true"></span>Community</a>
+                <a href="#support">Қолдау<span class="lang-divider" aria-hidden="true"></span>Support</a>
+                <a href="#faq">Сұрақтар<span class="lang-divider" aria-hidden="true"></span>FAQ</a>
+                <div class="nav-utility">
+                    <span class="nav-utility-label">Тіл / Language</span>
+                    <button class="lang-toggle" id="languageToggle" type="button" aria-label="Toggle language">Eng</button>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-  <main>
-    <section class="hero">
-      <div class="shell">
-        <div class="hero-card">
-          <div>
-            <p class="eyebrow">Orlando Qazaqtary</p>
-            <h1>One simple place for community updates, events, and contact.</h1>
-            <p class="lead">This landing page stays minimal: who we are, what is coming up, and where each community topic lives in the Other menu.</p>
-            <div class="actions">
-              <a class="btn btn-primary" href="#events">View events</a>
-              <a class="btn btn-secondary" href="#contact">Get in touch</a>
+    <main id="top">
+        <section class="hero">
+            <div class="shell">
+                <div class="hero-panel">
+                    <div class="hero-grid">
+                        <div class="hero-copy">
+                            <div class="eyebrow fade-up">Орталық Флоридадағы қазақ қауымы<span class="lang-divider" aria-hidden="true"></span>Kazakh community in Central Florida</div>
+                            <h1 class="fade-up delay-1">
+                                Orlando Qazaqtary
+                                <span>Орландодағы қазақ қауымы<span class="lang-divider" aria-hidden="true"></span>Kazakh community in Orlando</span>
+                            </h1>
+                            <div class="bilingual-block fade-up delay-2">
+                                <div class="lang-line">
+                                    Orlando Qazaqtary - Орландодағы қазақ қауымының ресми онлайн кеңістігі. Бұл сайтта
+                                    қауым жаңалықтары, мәдени іс-шаралар, еріктілік пен қолдау мүмкіндіктері, сондай-ақ
+                                    Nauryz 2026 және Nauryz Cup 2026 жобаларына арналған арнайы беттер бір жерге
+                                    жинақталған.
+                                </div>
+                                <div class="lang-line">
+                                    Orlando Qazaqtary is the official online home of the Kazakh community in Orlando. The
+                                    site brings together community news, cultural events, opportunities to support and
+                                    volunteer, and dedicated access to Nauryz 2026 and Nauryz Cup 2026.
+                                </div>
+                            </div>
+                            <div class="hero-actions fade-up delay-2">
+                                <a class="btn btn-primary" data-link="donate" href="https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00" target="_blank" rel="noreferrer">Қауымға қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Support the community</a>
+                                <a class="btn btn-secondary" href="#events">Іс-шараларды қарау<span class="lang-divider" aria-hidden="true"></span>View upcoming events</a>
+                            </div>
+                            <div class="hero-stats fade-up delay-3">
+                                <div class="hero-stat">
+                                    <strong>Негізгі сайт<span class="lang-divider" aria-hidden="true"></span>Main site</strong>
+                                    <span>Қауым жаңалықтары, анықтама және қолдау үшін негізгі алаң<span class="lang-divider" aria-hidden="true"></span>Central home for news, support, and community information</span>
+                                </div>
+                                <div class="hero-stat">
+                                    <strong>Наурыз 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026</strong>
+                                    <span>2026 жылғы Наурыз мерекесіне арналған жеке сайт<span class="lang-divider" aria-hidden="true"></span>Dedicated website for the 2026 Nauryz celebration</span>
+                                </div>
+                                <div class="hero-stat">
+                                    <strong>Наурыз Кубогы 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026</strong>
+                                    <span>Турнир туралы ақпарат пен тіркелуге арналған жеке сайт<span class="lang-divider" aria-hidden="true"></span>Dedicated event site for tournament information and registration</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-art fade-up delay-1">
+                            <div class="logo-showcase">
+                                <div class="oq-logo" aria-label="Orlando Qazaqtary logo">
+                                    <img src="OQ_logo_clean_social_1024_recolored.png" alt="Orlando Qazaqtary logo">
+                                </div>
+                                <div class="showcase-note">
+                                    <strong>Қауым айшықтамасы<span class="lang-divider" aria-hidden="true"></span>Community identity</strong>
+                                    <div class="bilingual-block">
+                                        <div class="lang-line">
+                                            Бұл нұсқада Orlando Qazaqtary логотипі қауымның негізгі сайты мен Nauryz Cup 2026
+                                            жобасының визуалдық бағытына үйлестіріліп қолданылған.
+                                        </div>
+                                        <div class="lang-line">
+                                            This version of the Orlando Qazaqtary logo is adapted to align with the visual
+                                            direction of the main site and Nauryz Cup 2026.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <aside class="hero-aside">
-            <h2>What is here</h2>
-            <p>Only the essentials: upcoming events, a short community overview, and direct links to topic pages. No subdomain explanations, no filler sections.</p>
-          </aside>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section class="section" id="events">
-      <div class="shell">
-        <div class="section-head">
-          <p class="eyebrow">Events</p>
-          <h2>Current and upcoming items</h2>
-          <p class="section-copy">Events live here on the LP. Topic pages in the Other menu can carry related updates, coordination, and follow-up information.</p>
-        </div>
-        <div class="events-grid">
-          <article class="event-card">
-            <div class="event-meta">Featured</div>
-            <h3>Oraza, 2026</h3>
-            <p>Schedules, community iftars, reminders, and volunteer coordination for Ramadan-related activities.</p>
-          </article>
-          <article class="event-card">
-            <div class="event-meta">Community</div>
-            <h3>Seasonal gatherings</h3>
-            <p>Family meetups, guest visits, and local gatherings that keep the Orlando community connected throughout the year.</p>
-          </article>
-          <article class="event-card">
-            <div class="event-meta">Programs</div>
-            <h3>Projects and support drives</h3>
-            <p>Community initiatives, volunteering, and support campaigns connected to current needs and upcoming activities.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+        <section id="about">
+            <div class="shell">
+                <div class="section-heading">
+                    <span class="kicker">Біз туралы<span class="lang-divider" aria-hidden="true"></span>About</span>
+                    <h2>Қауым өмірі, іс-шаралар және байланысқа арналған негізгі алаң<span class="lang-divider" aria-hidden="true"></span>A central platform for community life, events, and outreach.</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">
+                            Orlando Qazaqtary қауым үшін негізгі ақпарат көзі ретінде қызмет етеді: мұнда алдағы
+                            іс-шаралар, маңызды мәліметтер, қолдау жолдары және жыл бойы байланыста болуға арналған
+                            мүмкіндіктер жинақталған.
+                        </div>
+                        <div class="lang-line">
+                            Orlando Qazaqtary serves as the main point of reference for the community: a place to learn
+                            about upcoming events, find key information, support local initiatives, and stay connected
+                            throughout the year.
+                        </div>
+                    </div>
+                </div>
+                <div class="info-grid">
+                    <article class="card">
+                        <span class="label">Бейне<span class="lang-divider" aria-hidden="true"></span>Identity</span>
+                        <h3>Айқын қоғамдық келбет<span class="lang-divider" aria-hidden="true"></span>Clear public identity</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Orlando Qazaqtary-ды іс-шаралар, хабарландырулар және серіктестіктер аясында бірізді таныстыратын ресми кеңістік.</div>
+                            <div class="lang-line">A recognizable and consistent home for Orlando Qazaqtary across events, announcements, and partnerships.</div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <span class="label">Отбасы<span class="lang-divider" aria-hidden="true"></span>Families</span>
+                        <h3>Ашық қауым кеңістігі<span class="lang-divider" aria-hidden="true"></span>Welcoming community space</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Отбасылар, студенттер, қонақтар және қауымның тұрақты мүшелері үшін пайдалы бастапқы алаң.</div>
+                            <div class="lang-line">A useful starting point for families, students, guests, and long-standing members of the community.</div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <span class="label">Жобалар<span class="lang-divider" aria-hidden="true"></span>Projects</span>
+                        <h3>Өсуге дайын алаң<span class="lang-divider" aria-hidden="true"></span>Room to grow</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Мәдени бағдарламаларды, маусымдық іс-шараларды және болашақ қауым бастамаларын қолдауға ыңғайланған құрылым.</div>
+                            <div class="lang-line">Structured to support cultural programming, seasonal events, and future community-led initiatives.</div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <span class="label">Қолдау<span class="lang-divider" aria-hidden="true"></span>Support</span>
+                        <h3>Тұрақтылық пен қолдау<span class="lang-divider" aria-hidden="true"></span>Support and continuity</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Қаржылай қолдауды, еріктілерді үйлестіруді және қауым іс-шараларының ұзақ мерзімді жұмысын қолдауға арналған.</div>
+                            <div class="lang-line">Built to support fundraising, volunteer coordination, and the long-term work behind community events.</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-    <section class="section">
-      <div class="shell">
-        <div class="events-grid">
-          <article class="simple-card">
-            <h3>Simple structure</h3>
-            <p>The landing page is reduced to just the parts visitors need first: identity, events, and navigation.</p>
-          </article>
-          <article class="simple-card">
-            <h3>Topic pages</h3>
-            <p>The Other menu opens category pages matching the structure you shared in the screenshot.</p>
-          </article>
-          <article class="simple-card">
-            <h3>Easy to extend</h3>
-            <p>Each category page is ready for announcements, resources, and event-related content without overloading the homepage.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+        <section id="founder-note">
+            <div class="shell">
+                <div class="quote-wrap">
+                    <article class="quote-card">
+                        <span class="kicker">Біздің қауым<span class="lang-divider" aria-hidden="true"></span>Our Community</span>
+                        <blockquote>
+                            “Orlando Qazaqtary Орталық Флоридадағы отбасыларды, студенттерді, мамандарды және Қазақстан
+                            достарын мәдениет, қонақжайлық және ортақ қауым өмірі арқылы біріктіреді.”
+                            <span class="lang-divider" aria-hidden="true"></span>
+                            “Orlando Qazaqtary brings together families, students, professionals, and friends of Kazakhstan
+                            in Central Florida through culture, hospitality, and shared community life.”
+                        </blockquote>
+                        <cite>Orlando Qazaqtary</cite>
+                        <ul class="quote-list">
+                            <li>Қазақ мәдениетін көзге көрінетін және мағыналы түрде сақтау мен бөлісу.<span class="lang-divider" aria-hidden="true"></span>Preserve and share Kazakh culture in a visible and meaningful way.</li>
+                            <li>Іс-шаралар, қолдау, еріктілік және байланыс үшін сенімді кеңістік қалыптастыру.<span class="lang-divider" aria-hidden="true"></span>Create a dependable place for events, support, volunteering, and communication.</li>
+                            <li>Ірі жобаларды бір сенімді қауым айшықтамасының аясында ұштастыру.<span class="lang-divider" aria-hidden="true"></span>Keep major projects connected under one trusted community identity.</li>
+                        </ul>
+                    </article>
+                    <aside class="showcase-card">
+                        <strong>Сайттың мақсаты<span class="lang-divider" aria-hidden="true"></span>What this site is for</strong>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Бұл сайт Orlando Qazaqtary-мен байланыс орнатқысы келетін қонақтар, қауым мүшелері, демеушілер және серіктестер үшін негізгі кіру нүктесі ретінде жасалған.</div>
+                            <div class="lang-line">This website is designed to be the main entry point for visitors, community members, sponsors, and partner organizations looking to connect with Orlando Qazaqtary.</div>
+                        </div>
+                        <div class="showcase-stack">
+                            <div class="showcase-pill">Хабарландырулар, іс-шара ақпараты және қолдау сілтемелері бір ресми алаңда орналасады.<span class="lang-divider" aria-hidden="true"></span>Announcements, event information, and support links live in one official place.</div>
+                            <div class="showcase-pill">Субдомендер ірі іс-шараларға бренд бірізділігін жоғалтпай кеңеюге мүмкіндік береді.<span class="lang-divider" aria-hidden="true"></span>Subdomains allow major events to grow without losing brand consistency.</div>
+                            <div class="showcase-pill">Демеушілер, еріктілер және қонақтар қауымның негізгі сайтынан бастай алады.<span class="lang-divider" aria-hidden="true"></span>Sponsors, volunteers, and guests can all start from the main community website.</div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
 
-    <section class="section" id="contact">
-      <div class="shell">
-        <div class="section-head">
-          <p class="eyebrow">Contact</p>
-          <h2>Stay connected</h2>
-        </div>
-        <div class="simple-card">
-          <p>If you want to share an event, post an update, or direct people to one of the category pages, this is the main entry point for the Orlando Qazaqtary site.</p>
-        </div>
-      </div>
-    </section>
-  </main>
+        <section id="events">
+            <div class="shell">
+                <div class="section-heading">
+                    <span class="kicker">Алдағы іс-шаралар<span class="lang-divider" aria-hidden="true"></span>Upcoming Events</span>
+                    <h2>Алдағы іс-шаралар мен қауым бағдарламалары<span class="lang-divider" aria-hidden="true"></span>Upcoming events and community programs</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Бұл бөлім қауым үшін маңызды алдағы іс-шаралар мен бағдарламаларды көрсетіп, келесі жоспарларды тез түсінуге көмектеседі.</div>
+                        <div class="lang-line">This section highlights the events and activities most relevant to the community and helps visitors quickly understand what is happening next.</div>
+                    </div>
+                </div>
+                <div class="events-grid">
+                    <article class="card event-card">
+                        <span class="event-date">Көктем<span class="lang-divider" aria-hidden="true"></span>Spring</span>
+                        <h3>Наурыз 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Orlando Qazaqtary ұйымдастыратын 2026 жылғы Наурыз мерекесі қойылымдар, ортақ дастарқан, отбасылық белсенділіктер және қазақ мәдениетін көпшілікке таныстыратын бағдарламаларды қамтиды.</div>
+                            <div class="lang-line">Orlando Qazaqtary's 2026 Nauryz celebration features performances, shared meals, family activities, and a public presentation of Kazakh culture.</div>
+                        </div>
+                        <div class="event-meta">
+                            <span>Негізгі маусымдық іс-шара<span class="lang-divider" aria-hidden="true"></span>Main seasonal event</span>
+                            <span>Субдоменге дайын<span class="lang-divider" aria-hidden="true"></span>Subdomain-ready</span>
+                        </div>
+                    </article>
+                    <article class="card event-card">
+                        <span class="event-date">Турнир<span class="lang-divider" aria-hidden="true"></span>Tournament</span>
+                        <h3>Наурыз Кубогы 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Тіркелу, кесте, жаңалықтар және жарысқа қатысты мәліметтер жеке сайтта ұсынылатын арнайы турнирлік жоба.</div>
+                            <div class="lang-line">A dedicated tournament experience with registration, schedules, event updates, and competition information presented on its own website.</div>
+                        </div>
+                        <div class="event-meta">
+                            <span>Жарыс форматы<span class="lang-divider" aria-hidden="true"></span>Competition format</span>
+                            <span>Іс-шара микросайты<span class="lang-divider" aria-hidden="true"></span>Event microsite</span>
+                        </div>
+                    </article>
+                    <article class="card event-card">
+                        <span class="event-date">Жыл бойы<span class="lang-divider" aria-hidden="true"></span>Year-round</span>
+                        <h3>Қауым кездесулері<span class="lang-divider" aria-hidden="true"></span>Community Gatherings</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Жыл бойы өтетін шағын кездесулер, соның ішінде отбасылық іс-шаралар, қонақ қабылдау, тілдік жүздесулер және бейресми қауым кештері.</div>
+                            <div class="lang-line">Smaller gatherings held throughout the year, including family events, guest visits, language meetups, and informal community evenings.</div>
+                        </div>
+                        <div class="event-meta">
+                            <span>Тұрақты белсенділік<span class="lang-divider" aria-hidden="true"></span>Ongoing activity</span>
+                            <span>Негізгі сайт жаңартуы<span class="lang-divider" aria-hidden="true"></span>Main-site updates</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-  <footer class="footer">
-    <div class="shell">Orlando Qazaqtary</div>
-  </footer>
+        <section id="subdomains" style="display:none" aria-hidden="true">
+            <div class="shell">
+                <div class="section-heading">
+                    <span class="kicker">Субдомендер<span class="lang-divider" aria-hidden="true"></span>Subdomains</span>
+                    <h2>Ірі іс-шаралар мен маусымдық жобаларға арналған субдомендер<span class="lang-divider" aria-hidden="true"></span>Subdomains for major events and seasonal projects</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Негізгі сайт Orlando Qazaqtary қауымына тұтастай қызмет етеді, ал ірі бастамалар өз құрылымы, мазмұны және науқандық бағыты бар жеке кеңістікке ие бола алады.</div>
+                        <div class="lang-line">The main website remains focused on Orlando Qazaqtary as a whole, while larger initiatives can have dedicated spaces with their own structure, content, and campaign focus.</div>
+                    </div>
+                </div>
+                <div class="subdomain-grid">
+                    <article class="subdomain-panel dark">
+                        <h3>Ұсынылатын сайт құрылымы<span class="lang-divider" aria-hidden="true"></span>Recommended website structure</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Негізгі сайтты қауымның тұрақты басты беті ретінде қалдырып, жеке мазмұн, кесте, тіркелу жолы немесе медиа қажет ететін ірі іс-шараларға субдомендер пайдалану ұсынылады.</div>
+                            <div class="lang-line">Keep the main site as the permanent community homepage and use subdomains for larger event properties that need their own messaging, schedules, registration flow, or media.</div>
+                        </div>
+                        <div class="subdomain-list">
+                            <div class="subdomain-item">
+                                <strong>Негізгі сайт<span class="lang-divider" aria-hidden="true"></span>Main site</strong>
+                                <span>orlandoqazaqtary.org</span>
+                            </div>
+                            <div class="subdomain-item">
+                                <strong>Наурыз 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026</strong>
+                                <span>nauryz.orlandoqazaqtary.org</span>
+                            </div>
+                            <div class="subdomain-item">
+                                <strong>Наурыз Кубогы 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026</strong>
+                                <span>cup.orlandoqazaqtary.org</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="subdomain-panel">
+                        <span class="kicker">Ұсынылатын орналастыру<span class="lang-divider" aria-hidden="true"></span>Suggested deployment</span>
+                        <h3>Жеке іс-шара сайттары, ортақ бір айшықтама<span class="lang-divider" aria-hidden="true"></span>Separate event sites with one shared identity</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">`nauryz.orlandoqazaqtary.org` доменін Наурыз 2026-ға, ал `ncc.html` бетін `cup.orlandoqazaqtary.org` доменіне Наурыз Кубогы 2026 сайты ретінде орналастырыңыз.</div>
+                            <div class="lang-line">Use `nauryz.orlandoqazaqtary.org` for Nauryz 2026 and deploy `ncc.html` to `cup.orlandoqazaqtary.org` as the dedicated Nauryz Cup 2026 website.</div>
+                        </div>
+                        <a class="subdomain-link" href="https://nauryz.orlandoqazaqtary.org">nauryz.orlandoqazaqtary.org</a>
+                        <a class="subdomain-link" href="https://cup.orlandoqazaqtary.org">cup.orlandoqazaqtary.org</a>
+                        <div class="hero-actions" style="margin-top: 22px;">
+                            <a class="btn btn-primary" data-link="donate" href="https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00" target="_blank" rel="noreferrer">Қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Donate</a>
+                            <a class="btn btn-secondary" href="https://cup.orlandoqazaqtary.org">Наурыз Кубогы 2026 сайты<span class="lang-divider" aria-hidden="true"></span>Visit Nauryz Cup 2026</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-  <script src="site.js"></script>
+        <section id="community">
+            <div class="shell">
+                <div class="section-heading">
+                    <span class="kicker">Қауым бөлімі<span class="lang-divider" aria-hidden="true"></span>Community Features</span>
+                    <h2>Толыққанды қауым сайтының негізгі бөлімдері<span class="lang-divider" aria-hidden="true"></span>Core sections of a complete community website</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Бұл бөлімдер сайтқа тұрақты байланыс, іс-шараларды ұйымдастыру және қауымды таныстыру міндеттерін болашақта қайта құрастырмай-ақ атқаруға мүмкіндік береді.</div>
+                        <div class="lang-line">These sections give the website room to support regular communication, event logistics, and public presentation without requiring a redesign as the community grows.</div>
+                    </div>
+                </div>
+                <div class="feature-grid">
+                    <article class="card feature-card">
+                        <span class="label">Хабарландыру<span class="lang-divider" aria-hidden="true"></span>Announcements</span>
+                        <h3>Қауым жаңалықтары мен жаңартулар<span class="lang-divider" aria-hidden="true"></span>Community news and updates</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Жаңалықтарды, еске салуларды, мерзімдерді және маңызды ақпаратты бір ресми алаңда жариялау.</div>
+                            <div class="lang-line">Share news, reminders, deadlines, and practical updates in one consistent place.</div>
+                        </div>
+                    </article>
+                    <article class="card feature-card">
+                        <span class="label">Тіркелу<span class="lang-divider" aria-hidden="true"></span>Registration</span>
+                        <h3>Іс-шара тіркелуі мен қызығушылық формалары<span class="lang-divider" aria-hidden="true"></span>Event signups and interest forms</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Қонақтарды RSVP, тіркелу сілтемелері, отбасылық формалар және іс-шара жазылу жолдарына негізгі сайттан бағыттау.</div>
+                            <div class="lang-line">Direct visitors to RSVPs, registration links, family forms, and event signups from the main website.</div>
+                        </div>
+                    </article>
+                    <article class="card feature-card">
+                        <span class="label">Байланыс<span class="lang-divider" aria-hidden="true"></span>Outreach</span>
+                        <h3>Серіктестерге дайын ресми келбет<span class="lang-divider" aria-hidden="true"></span>Partner-ready public presence</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Orlando Qazaqtary-ды демеушілерге, алаң иелеріне, қонақтарға және серіктес ұйымдарға анық таныстыру.</div>
+                            <div class="lang-line">Present Orlando Qazaqtary clearly to sponsors, venues, guests, and partner organizations.</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="shell">
+                <div class="section-heading">
+                    <span class="kicker">Галерея<span class="lang-divider" aria-hidden="true"></span>Gallery</span>
+                    <h2>Қауым іс-шаралары мен мерекелер галереясы<span class="lang-divider" aria-hidden="true"></span>Gallery of community events and celebrations</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Бұл галерея бөлімі кездесулерден, қойылымдардан, отбасылық іс-шаралардан, Наурыз 2026 және Наурыз Кубогы 2026 сәттерінен алынған фотосуреттерге арналған.</div>
+                        <div class="lang-line">This gallery section is designed for photography from gatherings, performances, family activities, Nauryz 2026, and Nauryz Cup 2026.</div>
+                    </div>
+                </div>
+                <div class="gallery-grid">
+                    <article class="card gallery-card">
+                        <div class="gallery-visual"></div>
+                        <div class="gallery-copy">
+                            <h3>Наурыз 2026 мерекесі<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026 celebration</h3>
+                            <p>Қойылымдар, безендіру және көктемгі негізгі мерекеден көріністер<span class="lang-divider" aria-hidden="true"></span>Performance moments, event decor, and highlights from the main spring celebration.</p>
+                        </div>
+                    </article>
+                    <article class="card gallery-card">
+                        <div class="gallery-visual"></div>
+                        <div class="gallery-copy">
+                            <h3>Қауым қонақжайлығы<span class="lang-divider" aria-hidden="true"></span>Community hospitality</h3>
+                            <p>Ортақ дастарқан, қонақжайлық және ұрпақтар арасындағы әңгіме<span class="lang-divider" aria-hidden="true"></span>Shared meals, hospitality, and conversation across generations.</p>
+                        </div>
+                    </article>
+                    <article class="card gallery-card">
+                        <div class="gallery-visual"></div>
+                        <div class="gallery-copy">
+                            <h3>Жастар қатысуы<span class="lang-divider" aria-hidden="true"></span>Youth participation</h3>
+                            <p>Балалар мен жастардың мәдениетке, тілге және қауым өміріне араласуы<span class="lang-divider" aria-hidden="true"></span>Children and young adults participating in culture, language, and community life.</p>
+                        </div>
+                    </article>
+                    <article class="card gallery-card">
+                        <div class="gallery-visual"></div>
+                        <div class="gallery-copy">
+                            <h3>Наурыз Кубогы 2026<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026</h3>
+                            <p>Жарыс, командалық рух және қауымды танытатын спорттық серпін<span class="lang-divider" aria-hidden="true"></span>Competition, teamwork, and sport-driven energy that expand the public face of the community.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="partners">
+            <div class="shell">
+                <div class="section-heading">
+                    <span class="kicker">Серіктестер<span class="lang-divider" aria-hidden="true"></span>Partners</span>
+                    <h2>Серіктестер, демеушілер және қауым қолдауы<span class="lang-divider" aria-hidden="true"></span>Partners, sponsors, and community support</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Бұл бөлім демеушілерге, қауым серіктестеріне және қолдау көрсететін ұйымдарға сайтта айқын әрі кәсіби орын береді.</div>
+                        <div class="lang-line">This section gives sponsors, community partners, and supporting organizations a clear and professional place on the website.</div>
+                    </div>
+                </div>
+                <div class="partners-grid">
+                    <article class="card partner-card">
+                        <div class="partner-mark">OQ</div>
+                        <h3>Мәдени серіктестер<span class="lang-divider" aria-hidden="true"></span>Cultural partners</h3>
+                        <p>Мәдени бағдарламаларды қолдайтын жергілікті ұйымдар мен қауым бірлестіктерін таныстыру<span class="lang-divider" aria-hidden="true"></span>Feature local organizations, community associations, and institutions that support cultural programming.</p>
+                    </article>
+                    <article class="card partner-card">
+                        <div class="partner-mark">NC</div>
+                        <h3>Наурыз 2026 қолдаушылары<span class="lang-divider" aria-hidden="true"></span>Nauryz 2026 supporters</h3>
+                        <p>2026 жылғы Наурыз мерекесіне үлес қосқан кәсіпорындар мен демеушілерді көрсету<span class="lang-divider" aria-hidden="true"></span>Recognize businesses and sponsors who contribute to the 2026 Nauryz celebration.</p>
+                    </article>
+                    <article class="card partner-card">
+                        <div class="partner-mark">SC</div>
+                        <h3>Наурыз Кубогы 2026 демеушілері<span class="lang-divider" aria-hidden="true"></span>Nauryz Cup 2026 sponsors</h3>
+                        <p>Наурыз Кубогы 2026 және спортқа қатысты қауым бастамаларын қолдайтын серіктестерді көрсету<span class="lang-divider" aria-hidden="true"></span>Highlight supporters of Nauryz Cup 2026 and other sport-related community initiatives.</p>
+                    </article>
+                    <article class="card partner-card">
+                        <div class="partner-mark">FL</div>
+                        <h3>Аймақтық желі<span class="lang-divider" aria-hidden="true"></span>Regional network</h3>
+                        <p>Флоридадағы және одан тыс аймақтардағы серіктес қауымдар мен ұйымдарды таныстыру<span class="lang-divider" aria-hidden="true"></span>Recognize regional friends, institutions, and partner communities across Florida and beyond.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="support">
+            <div class="shell">
+                <div class="section-heading">
+                    <span class="kicker">Қолдау және еріктілік<span class="lang-divider" aria-hidden="true"></span>Support and Volunteer</span>
+                    <h2>Қолдау көрсетіп, ерікті болып, байланыста болыңыз<span class="lang-divider" aria-hidden="true"></span>Support, volunteer, and stay connected</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Қолдау, еріктілік және тіркелу сілтемелері қауым мүшелері үшін оңай табылатын болуы керек, сонда әркім ұйым жұмысына нақты үлес қоса алады.</div>
+                        <div class="lang-line">Donation, volunteer, and signup links should be easy to find so community members can support the organization in practical ways.</div>
+                    </div>
+                </div>
+                <div class="support-grid">
+                    <article class="form-card">
+                        <h3>Тіркелу, еріктілік және жаңалықтарға жазылу<span class="lang-divider" aria-hidden="true"></span>Registration, volunteer, and newsletter access</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Төмендегі сілтемелер арқылы іс-шараларға тіркеліп, қауым жұмысына ерікті ретінде қосылып, Orlando Qazaqtary жаңалықтарына жазыла аласыз.</div>
+                            <div class="lang-line">Use the links below to register for events, volunteer for community activities, and subscribe for updates from Orlando Qazaqtary.</div>
+                        </div>
+                        <div class="action-list">
+                            <div class="action-item">
+                                <div>
+                                    <strong>Іс-шара тіркелуі<span class="lang-divider" aria-hidden="true"></span>Event registration</strong>
+                                    <span>Наурыз 2026, Наурыз Кубогы 2026 және басқа қауым іс-шараларына тіркелу<span class="lang-divider" aria-hidden="true"></span>Register for Nauryz 2026, Nauryz Cup 2026, and other community events.</span>
+                                </div>
+                                <a class="btn btn-primary" data-link="registration" href="#" target="_blank" rel="noreferrer">Тіркелу<span class="lang-divider" aria-hidden="true"></span>Register</a>
+                            </div>
+                            <div class="action-item">
+                                <div>
+                                    <strong>Еріктілер формасы<span class="lang-divider" aria-hidden="true"></span>Volunteer form</strong>
+                                    <span>Дайындық, қарсы алу, логистика, ақпарат тарату және отбасылық қолдау жұмыстарына қосылу<span class="lang-divider" aria-hidden="true"></span>Sign up to help with setup, hosting, logistics, outreach, and family support.</span>
+                                </div>
+                                <a class="btn btn-primary" data-link="volunteer" href="#" target="_blank" rel="noreferrer">Ерікті болу<span class="lang-divider" aria-hidden="true"></span>Volunteer</a>
+                            </div>
+                            <div class="action-item">
+                                <div>
+                                    <strong>Жаңалықтарға жазылу<span class="lang-divider" aria-hidden="true"></span>Newsletter signup</strong>
+                                    <span>Хабарландырулар, іс-шара еске салулары және қауым жаңалықтарын алу үшін жазылыңыз<span class="lang-divider" aria-hidden="true"></span>Subscribe to receive announcements, event reminders, and community updates.</span>
+                                </div>
+                                <a class="btn btn-primary" data-link="newsletter" href="#" target="_blank" rel="noreferrer">Жазылу<span class="lang-divider" aria-hidden="true"></span>Subscribe</a>
+                            </div>
+                        </div>
+                        <div class="form-note bilingual-block">
+                            <div class="lang-line">Қолдау, тіркелу, еріктілік және жаңалықтарға жазылу арнайы онлайн формалар мен төлем беттері арқылы басқарыла алады.</div>
+                            <div class="lang-line">Donations, registration, volunteer interest, and newsletter signups can all be managed through dedicated online forms and payment pages.</div>
+                        </div>
+                    </article>
+                    <aside class="form-card">
+                        <h3>Қолдау басымдықтары<span class="lang-divider" aria-hidden="true"></span>Support priorities</h3>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Қайырымдылық алаңды жалға алу, балалар бағдарламалары, қауым дастарханы, іс-шараны ұйымдастыру және цифрлық инфрақұрылымды қолдауға жұмсалады.</div>
+                            <div class="lang-line">Donations help cover venue costs, children's programming, community meals, event production, and ongoing digital infrastructure.</div>
+                        </div>
+                        <div class="subdomain-list" style="margin-top: 20px;">
+                            <div class="card" style="padding: 18px;">
+                                <span class="label">Қайырымдылық<span class="lang-divider" aria-hidden="true"></span>Donate</span>
+                                <h3 style="margin-top: 8px;">Қауымға қолдау<span class="lang-divider" aria-hidden="true"></span>Community giving</h3>
+                                <div class="bilingual-block">
+                                    <div class="lang-line">Orlando Qazaqtary жұмысына қауіпсіз онлайн төлем беті арқылы қолдау көрсетіңіз.</div>
+                                    <div class="lang-line">Support Orlando Qazaqtary through a secure online donation page.</div>
+                                </div>
+                                <div class="hero-actions" style="margin-top: 18px;">
+                                    <a class="btn btn-primary" data-link="donate" href="https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00" target="_blank" rel="noreferrer">Қазір қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Donate Now</a>
+                                </div>
+                            </div>
+                            <div class="card" style="padding: 18px;">
+                                <span class="label">Жаңалықтар<span class="lang-divider" aria-hidden="true"></span>Newsletter</span>
+                                <h3 style="margin-top: 8px;">Қауым жаңартулары<span class="lang-divider" aria-hidden="true"></span>Community updates</h3>
+                                <div class="bilingual-block">
+                                    <div class="lang-line">Іс-шара еске салуларын, қауым хабарландыруларын және тіркелу жаңартуларын электрондық пошта арқылы алыңыз.</div>
+                                    <div class="lang-line">Receive event reminders, community announcements, and registration updates by email.</div>
+                                </div>
+                                <div class="hero-actions" style="margin-top: 18px;">
+                                    <a class="btn btn-secondary" data-link="newsletter" href="#" target="_blank" rel="noreferrer">Жаңалықтарға қосылу<span class="lang-divider" aria-hidden="true"></span>Join newsletter</a>
+                                </div>
+                            </div>
+                            <div class="card" style="padding: 18px;">
+                                <span class="label">Еріктілік<span class="lang-divider" aria-hidden="true"></span>Volunteer</span>
+                                <h3 style="margin-top: 8px;">Еріктілерді үйлестіру<span class="lang-divider" aria-hidden="true"></span>Volunteer coordination</h3>
+                                <div class="bilingual-block">
+                                    <div class="lang-line">Жоспарлау, логистика, дайындық, қонақ күту және ақпарат тарату жұмыстарына қосылуды жеңілдетіңіз.</div>
+                                    <div class="lang-line">Make it easy for people to help with planning, logistics, setup, hosting, and outreach.</div>
+                                </div>
+                                <div class="hero-actions" style="margin-top: 18px;">
+                                    <a class="btn btn-secondary" data-link="volunteer" href="#" target="_blank" rel="noreferrer">Еріктілер формасы<span class="lang-divider" aria-hidden="true"></span>Open volunteer form</a>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="shell">
+                <div class="section-heading">
+                    <span class="kicker">Жиі қойылатын сұрақтар<span class="lang-divider" aria-hidden="true"></span>FAQ</span>
+                    <h2>Жиі қойылатын сұрақтар<span class="lang-divider" aria-hidden="true"></span>Frequently asked questions</h2>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Бұл қысқа бөлім жаңа келушілерге қауым туралы және сайттың қалай ұйымдастырылғанын түсінуге көмектеседі.</div>
+                        <div class="lang-line">A short FAQ helps first-time visitors understand the community and how the website is organized.</div>
+                    </div>
+                </div>
+                <div class="faq-card">
+                    <div class="faq-item">
+                        <strong>Orlando Qazaqtary кімдер үшін?<span class="lang-divider" aria-hidden="true"></span>Who is Orlando Qazaqtary for?</strong>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Қауым Орландодағы қазақтарды, аралас отбасыларды, студенттерді, мамандарды, балаларды және қазақ мәдени өміріне араласқысы келетін достарды қарсы алады.</div>
+                            <div class="lang-line">The community welcomes Kazakhs in Orlando, mixed families, students, professionals, children, and friends who want to take part in Kazakh cultural life.</div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <strong>Неге Nauryz 2026 мен Nauryz Cup 2026 жеке субдомендерде?<span class="lang-divider" aria-hidden="true"></span>Why are Nauryz 2026 and Nauryz Cup 2026 on subdomains?</strong>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Өйткені бұл екі жоба өз алдына жеке мазмұн мен тәжірибені қажет ететін ауқымды іс-шаралар, бірақ олар әлі де Orlando Qazaqtary экожүйесінің бір бөлігі болып қалады.</div>
+                            <div class="lang-line">Because Nauryz 2026 and Nauryz Cup 2026 are large enough to deserve their own focused experience while still remaining part of the Orlando Qazaqtary ecosystem.</div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <strong>Қауымды қалай қолдауға болады?<span class="lang-divider" aria-hidden="true"></span>How can someone support the community?</strong>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Қайырымдылық жасау, демеуші болу, ерікті ретінде көмектесу, хабарландыруларды бөлісу немесе іс-шаралар мен қауым бағдарламаларына қатысу арқылы.</div>
+                            <div class="lang-line">Through donations, sponsorship, volunteering, sharing announcements, or participating in events and community programs.</div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <strong>Бұл сайт кейін тіркелу мен байланыс формаларын қабылдай ала ма?<span class="lang-divider" aria-hidden="true"></span>Can this site handle registration and contact forms later?</strong>
+                        <div class="bilingual-block">
+                            <div class="lang-line">Иә. Сайттың құрылымы RSVP сілтемелерін, тіркелу жүйелерін, жаңалықтар құралдарын және жіберу процестерін қосуға дайын.</div>
+                            <div class="lang-line">Yes. The structure is already prepared for RSVP links, registration systems, newsletter tools, and submission workflows.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="shell">
+            <div class="footer-grid">
+                <article class="footer-card">
+                    <h3>Orlando Qazaqtary</h3>
+                    <div class="bilingual-block">
+                        <div class="lang-line">Орландодағы қазақ қауымының негізгі сайты: қауым ақпараты, мәдени іс-шаралар, қолдау және Nauryz 2026 мен Nauryz Cup 2026 субдомендерін бір жерде біріктіреді.</div>
+                        <div class="lang-line">The main website for the Kazakh community in Orlando, bringing together community information, cultural events, support, and dedicated subdomains for Nauryz 2026 and Nauryz Cup 2026.</div>
+                    </div>
+                </article>
+                <article class="footer-card">
+                    <h3>Бөлімдер<span class="lang-divider" aria-hidden="true"></span>Sections</h3>
+                    <ul>
+                        <li><a href="#events">Іс-шаралар<span class="lang-divider" aria-hidden="true"></span>Events</a></li>
+                        <li><a href="#community">Қауым<span class="lang-divider" aria-hidden="true"></span>Community</a></li>
+                        <li><a href="#support">Қолдау<span class="lang-divider" aria-hidden="true"></span>Support</a></li>
+                        <li><a href="#faq">Сұрақтар<span class="lang-divider" aria-hidden="true"></span>FAQ</a></li>
+                    </ul>
+                </article>
+                <article class="footer-card">
+                    <h3>Байланыс<span class="lang-divider" aria-hidden="true"></span>Connect</h3>
+                    <ul>
+                        <li><a href="https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00" target="_blank" rel="noreferrer">Қолдау көрсету<span class="lang-divider" aria-hidden="true"></span>Donate</a></li>
+                        <li><a href="#support">Ерікті болу<span class="lang-divider" aria-hidden="true"></span>Volunteer</a></li>
+                        <li><a href="#support">Жаңалықтарға жазылу<span class="lang-divider" aria-hidden="true"></span>Newsletter</a></li>
+                        <li><a href="#about">Біз туралы<span class="lang-divider" aria-hidden="true"></span>About us</a></li>
+                    </ul>
+                </article>
+            </div>
+            <div class="footer-legal">&copy; 2026 Orlando Qazaqtary. All rights reserved.</div>
+        </div>
+    </footer>
+    <script>
+        function wrapTextNode(node, className) {
+            if (!node || node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) {
+                return;
+            }
+            const span = document.createElement("span");
+            span.className = className;
+            span.textContent = node.textContent;
+            node.parentNode.replaceChild(span, node);
+        }
+
+        for (const divider of document.querySelectorAll(".lang-divider")) {
+            const previous = divider.previousSibling;
+            const next = divider.nextSibling;
+
+            if (previous && previous.nodeType === Node.TEXT_NODE) {
+                wrapTextNode(previous, "lang-kz");
+            } else if (previous && previous.nodeType === Node.ELEMENT_NODE && !previous.classList.contains("lang-kz")) {
+                previous.classList.add("lang-kz");
+            }
+
+            if (next && next.nodeType === Node.TEXT_NODE) {
+                wrapTextNode(next, "lang-en");
+            } else if (next && next.nodeType === Node.ELEMENT_NODE && !next.classList.contains("lang-en")) {
+                next.classList.add("lang-en");
+            }
+        }
+
+        for (const block of document.querySelectorAll(".bilingual-block")) {
+            const lines = block.querySelectorAll(":scope > .lang-line");
+            if (lines[0]) {
+                lines[0].classList.add("lang-kz");
+            }
+            if (lines[1]) {
+                lines[1].classList.add("lang-en");
+            }
+        }
+
+        const languageToggle = document.getElementById("languageToggle");
+        const navToggle = document.getElementById("navToggle");
+        const topbar = document.querySelector(".topbar");
+
+        function setNavOpen(isOpen) {
+            if (!topbar || !navToggle) {
+                return;
+            }
+
+            topbar.classList.toggle("nav-open", isOpen);
+            navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            navToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        }
+
+        function closeMobileNav() {
+            setNavOpen(false);
+        }
+
+        function syncMobileNavState() {
+            if (!window.matchMedia("(max-width: 760px)").matches) {
+                closeMobileNav();
+            }
+        }
+
+        function setLanguage(mode) {
+            document.body.dataset.lang = mode;
+            localStorage.setItem("oq-site-language", mode);
+            if (languageToggle) {
+                languageToggle.textContent = mode === "kz" ? "Eng" : "Qaz";
+            }
+        }
+
+        const savedLanguage = localStorage.getItem("oq-site-language") || "kz";
+        setLanguage(savedLanguage);
+
+        if (languageToggle) {
+            languageToggle.addEventListener("click", () => {
+                const nextLanguage = document.body.dataset.lang === "kz" ? "en" : "kz";
+                setLanguage(nextLanguage);
+
+                if (window.matchMedia("(max-width: 760px)").matches) {
+                    closeMobileNav();
+                }
+            });
+        }
+
+        if (navToggle && topbar) {
+            navToggle.addEventListener("click", () => {
+                setNavOpen(!topbar.classList.contains("nav-open"));
+            });
+        }
+
+        for (const navLink of document.querySelectorAll(".nav a, .nav-dropdown-menu a")) {
+            navLink.addEventListener("click", () => {
+                closeMobileNav();
+            });
+        }
+
+        for (const dropdown of document.querySelectorAll(".nav-dropdown")) {
+            dropdown.addEventListener("click", (e) => {
+                if (!window.matchMedia("(max-width: 760px)").matches) {
+                    e.stopPropagation();
+                }
+            });
+        }
+
+        document.addEventListener("click", (event) => {
+            if (!topbar || !topbar.classList.contains("nav-open")) {
+                return;
+            }
+
+            if (!topbar.contains(event.target)) {
+                closeMobileNav();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMobileNav();
+            }
+        });
+
+        window.addEventListener("resize", syncMobileNavState);
+        syncMobileNavState();
+
+        function isConfiguredSiteLink(url) {
+            return url && !url.includes("example.com") && !url.startsWith("#");
+        }
+
+        const OQ_SITE_LINKS = {
+            donate: "https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00",
+            registration: "https://example.com/replace-with-tally-registration-form",
+            volunteer: "https://example.com/replace-with-volunteer-interest-form",
+            newsletter: "https://example.com/replace-with-brevo-newsletter-signup"
+        };
+
+        for (const [key, url] of Object.entries(OQ_SITE_LINKS)) {
+            const anchors = document.querySelectorAll(`[data-link="${key}"]`);
+            for (const anchor of anchors) {
+                if (isConfiguredSiteLink(url)) {
+                    anchor.href = url;
+                    if (key === "donate") {
+                        anchor.target = "_blank";
+                        anchor.rel = "noreferrer";
+                    }
+                } else {
+                    if (key === "donate") {
+                        anchor.href = "https://buy.stripe.com/8x214m126ayX6ZxbdYaIM00";
+                        anchor.target = "_blank";
+                        anchor.rel = "noreferrer";
+                    } else {
+                        anchor.href = "#support";
+                        anchor.removeAttribute("target");
+                        anchor.removeAttribute("rel");
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
