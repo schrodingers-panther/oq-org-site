@@ -5,22 +5,19 @@
   if (!topbar || !toggle || !nav) return
 
   const otherItems = [
-    ['İS-ŞARALAR', 'pages/is-sharalar.html'],
-    ['Jalpy Chat', 'pages/jalpy-chat.html'],
-    ['Eriktiler jäne Demeuşiler', 'pages/eriktiler-jane-demeushiler.html'],
-    ['ĞYLYM/BİLİM Jobalary/Mäseleleri', 'pages/gylym-bilim-jobalary-maseleleri.html'],
-    ['Oraza, 2026', 'pages/oraza-2026.html'],
-    ['BUSINESS Jobalary/Mäseleleri', 'pages/business-jobalary-maseleleri.html'],
-    ['KÖMEKJÄRDEM/ASARLATU', 'pages/komekjardem-asarlatu.html'],
-    ['ZAN mäseleleri', 'pages/zan-maseleleri.html'],
-    ['ORLANDO Qazaq Ortalyğy', 'pages/orlando-qazaq-ortalygy.html'],
-    ['Florida Qazaq Ortalyğy', 'pages/florida-qazaq-ortalygy.html'],
-    ['Jumys', 'pages/jumys.html'],
-    ['DENSAULYQ Jobalary/Mäseleleri', 'pages/densaulyq-jobalary-maseleleri.html'],
-    ['SPORT Jobalary', 'pages/sport-jobalary.html'],
-    ['QARZHY mäseleleri', 'pages/qarzhy-maseleleri.html'],
-    ['Käsipker Äielder', 'pages/kasipker-aielder.html'],
-    ['Sälemdeme', 'pages/salemdeme.html']
+    ['Іс-Шаралар / Events', 'pages/is-sharalar.html'],
+    ['Ғылым/Білім / Science & Education', 'pages/gylym-bilim-jobalary-maseleleri.html'],
+    ['Бизнес / Business', 'pages/business-jobalary-maseleleri.html'],
+    ['Көмекжәрдем / Mutual Aid', 'pages/komekjardem-asarlatu.html'],
+    ['Заң / Legal', 'pages/zan-maseleleri.html'],
+    ['Орландо Орталығы / Orlando Center', 'pages/orlando-qazaq-ortalygy.html'],
+    ['Флорида Орталығы / Florida Center', 'pages/florida-qazaq-ortalygy.html'],
+    ['Жұмыс / Jobs', 'pages/jumys.html'],
+    ['Денсаулық / Health', 'pages/densaulyq-jobalary-maseleleri.html'],
+    ['Спорт / Sports', 'pages/sport-jobalary.html'],
+    ['Қаржы / Finance', 'pages/qarzhy-maseleleri.html'],
+    ['Кәсіпкер Әйелдер / Women Entrepreneurs', 'pages/kasipker-aielder.html'],
+    ['Сәлемдеме / Greetings', 'pages/salemdeme.html']
   ]
 
   if (!nav.querySelector('.nav-dropdown')) {
@@ -28,7 +25,7 @@
     const details = document.createElement('details')
     details.className = 'nav-dropdown'
     const summary = document.createElement('summary')
-    summary.textContent = 'Other'
+    summary.textContent = 'Қызметтер / Services'
     const menu = document.createElement('div')
     menu.className = 'nav-dropdown-menu'
 
