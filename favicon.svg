@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Orlando Qazaqtary favicon">
+  <rect width="64" height="64" rx="12" fill="#083a33"/>
+  <g fill="none" stroke="#f4deab" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="21" cy="28" r="12"/>
+    <circle cx="43" cy="28" r="12"/>
+    <path d="M 47 36 C 52 41, 52 49, 45 54"/>
+  </g>
+</svg>
