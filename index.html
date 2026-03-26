@@ -8,8 +8,8 @@
         name="description"
         content="Orlando Qazaqtary is the official online home of the Kazakh community in Orlando, featuring community news, cultural events, support, and dedicated access to Nauryz 2026 and Nauryz Cup 2026."
     >
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="shortcut icon" href="favicon.svg">
+    <link rel="icon" type="image/png" href="OQ_logo_clean_social_1024_recolored.png">
+    <link rel="shortcut icon" href="OQ_logo_clean_social_1024_recolored.png">
     <link rel="apple-touch-icon" href="OQ_logo_clean_social_1024_recolored.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1143,6 +1143,10 @@
                 pointer-events: none;
                 transform: translateY(-10px);
                 transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+                max-height: calc(100vh - 112px);
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                -webkit-overflow-scrolling: touch;
             }
 
             .topbar.nav-open .nav {
@@ -1320,6 +1324,11 @@
             backdrop-filter: blur(18px);
             display: grid;
             gap: 4px;
+            max-height: min(72vh, 480px);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
             z-index: 100;
         }
 
@@ -1361,6 +1370,7 @@
                 box-shadow: none;
                 border: 1px solid rgba(255, 255, 255, 0.08);
                 background: rgba(255, 255, 255, 0.04);
+                max-height: min(52vh, 360px);
             }
         }
 
@@ -2142,7 +2152,7 @@
 
         for (const dropdown of document.querySelectorAll(".nav-dropdown")) {
             dropdown.addEventListener("click", (e) => {
-                if (!window.matchMedia("(max-width: 760px)").matches) {
+                if (!window.matchMedia("(max-width: 760px)").matches && !e.target.closest(".nav-dropdown-menu")) {
                     e.stopPropagation();
                 }
             });
