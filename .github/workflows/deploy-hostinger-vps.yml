@@ -9,6 +9,7 @@ name: Deploy OQ.org HTML to Hostinger VPS
       - index.html
       - site.css
       - site.js
+      - 'kiimkeshek.sauda.orlandoqazaqtary.org/**'
       - 'pages/**'
       - '*.png'
       - '*.svg'
@@ -49,6 +50,9 @@ jobs:
           cp -f index.html "${{ env.OUTPUT_DIR }}/index.html"
           cp -f site.css "${{ env.OUTPUT_DIR }}/site.css"
           cp -f site.js "${{ env.OUTPUT_DIR }}/site.js"
+          if [ -d kiimkeshek.sauda.orlandoqazaqtary.org ]; then
+            cp -r kiimkeshek.sauda.orlandoqazaqtary.org "${{ env.OUTPUT_DIR }}/kiimkeshek.sauda.orlandoqazaqtary.org"
+          fi
           if [ -d pages ]; then
             cp -r pages "${{ env.OUTPUT_DIR }}/pages"
           fi
@@ -95,6 +99,7 @@ jobs:
             test -f "${{ env.REMOTE_DIR }}/${{ env.REMOTE_NAME }}"
             test -f "${{ env.REMOTE_DIR }}/site.css"
             test -f "${{ env.REMOTE_DIR }}/site.js"
+            test -f "${{ env.REMOTE_DIR }}/kiimkeshek.sauda.orlandoqazaqtary.org/index.html"
             grep -m1 -i "<title>" "${{ env.REMOTE_DIR }}/${{ env.REMOTE_NAME }}" || true
             test -f "${{ env.REMOTE_DIR }}/OQ_logo_clean_social_1024_recolored.png"
 

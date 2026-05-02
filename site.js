@@ -5,6 +5,7 @@
   if (!topbar || !toggle || !nav) return
 
   const otherItems = [
+    ['Киім-кешек / Apparel Marketplace', 'https://kiimkeshek.sauda.orlandoqazaqtary.org/'],
     ['Іс-Шаралар / Events', 'pages/is-sharalar.html'],
     ['Ғылым/Білім / Science & Education', 'pages/gylym-bilim-jobalary-maseleleri.html'],
     ['Бизнес / Business', 'pages/business-jobalary-maseleleri.html'],
@@ -32,7 +33,7 @@
     otherItems.forEach(([label, href]) => {
       const link = document.createElement('a')
       link.textContent = label
-      link.href = isSubpage ? href.replace('pages/', '') : href
+      link.href = href.startsWith('http') ? href : (isSubpage ? href.replace('pages/', '') : href)
       menu.appendChild(link)
     })
 

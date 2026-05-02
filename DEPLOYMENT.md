@@ -73,6 +73,26 @@ Enable it:
 
 Optional (recommended): add TLS with Certbot.
 
+### Marketplace sub-subdomain
+
+To serve the new apparel marketplace on `kiimkeshek.sauda.orlandoqazaqtary.org`, point that DNS record to the same VPS and add a dedicated Nginx site whose root is the marketplace folder deployed by this repo:
+
+```nginx
+server {
+   listen 80;
+   server_name kiimkeshek.sauda.orlandoqazaqtary.org;
+
+   root /var/www/orlandoqazaqtary.org/public/kiimkeshek.sauda.orlandoqazaqtary.org;
+   index index.html;
+
+   location / {
+      try_files $uri $uri/ =404;
+   }
+}
+```
+
+Enable it and reload Nginx in the same way as the main site, then issue TLS for `kiimkeshek.sauda.orlandoqazaqtary.org`.
+
 ### 3) SSH key for GitHub Actions
 
 Generate an SSH keypair (locally) and add the **public** key to the deploy user’s `~/.ssh/authorized_keys` on the VPS.
