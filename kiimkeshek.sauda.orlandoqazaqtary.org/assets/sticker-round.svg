@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" role="img" aria-labelledby="title desc">
+  <title id="title">Round sticker</title>
+  <desc id="desc">Round Orlando Qazaqtary 2026 sticker.</desc>
+  <rect width="260" height="260" fill="#f8f1de"/>
+  <circle cx="130" cy="130" r="106" fill="#0b4f3f" stroke="#d6a93d" stroke-width="12"/>
+  <text x="130" y="74" text-anchor="middle" fill="#ffffff" font-size="20" font-family="Manrope, Arial, sans-serif" font-weight="800">ORLANDO</text>
+  <text x="130" y="134" text-anchor="middle" fill="#d6a93d" font-size="58" font-family="Cormorant Garamond, Georgia, serif" font-weight="700">OQ</text>
+  <text x="130" y="172" text-anchor="middle" fill="#ffffff" font-size="18" font-family="Manrope, Arial, sans-serif" font-weight="800">QAZAQTARY</text>
+  <text x="76" y="208" text-anchor="middle" fill="#d6a93d" font-size="22" font-family="Manrope, Arial, sans-serif" font-weight="800">20</text>
+  <text x="184" y="208" text-anchor="middle" fill="#d6a93d" font-size="22" font-family="Manrope, Arial, sans-serif" font-weight="800">26</text>
+</svg>

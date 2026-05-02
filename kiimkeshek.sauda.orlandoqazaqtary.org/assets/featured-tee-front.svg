@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 540" role="img" aria-labelledby="title desc">
+  <title id="title">Black tee front</title>
+  <desc id="desc">Front view of black Orlando Qazaqtary tee with OQ crest.</desc>
+  <rect width="460" height="540" fill="#f8f1de"/>
+  <g transform="translate(80 36)">
+    <path d="M110 24h100l32 34 44 14-28 64-38-16v300H80V120L42 136 14 72l44-14z" fill="#171717"/>
+    <path d="M136 24c0 14 12 26 24 26h0c12 0 24-12 24-26" fill="none" stroke="#2c2c2c" stroke-width="8"/>
+    <text x="176" y="170" text-anchor="middle" fill="#d6a93d" font-size="56" font-family="Cormorant Garamond, Georgia, serif" font-weight="700">OQ</text>
+    <text x="176" y="208" text-anchor="middle" fill="#f2d587" font-size="14" font-family="Manrope, Arial, sans-serif" font-weight="700">ORLANDO</text>
+    <text x="176" y="228" text-anchor="middle" fill="#f2d587" font-size="14" font-family="Manrope, Arial, sans-serif" font-weight="700">QAZAQTARY</text>
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 300" role="img" aria-labelledby="title desc">
+  <title id="title">Black cap front</title>
+  <desc id="desc">Front view of black OQ cap.</desc>
+  <rect width="360" height="300" fill="#f8f1de"/>
+  <g transform="translate(40 24)">
+    <path d="M60 170c8-88 52-122 120-122s112 34 120 122v16H60z" fill="#161616"/>
+    <path d="M60 186c34 0 80 6 124 36 30-30 74-36 116-36-20 34-54 54-116 54S80 220 60 186z" fill="#0f0f0f"/>
+    <text x="180" y="124" text-anchor="middle" fill="#d6a93d" font-size="52" font-family="Cormorant Garamond, Georgia, serif" font-weight="700">OQ</text>
+    <text x="180" y="154" text-anchor="middle" fill="#f4d98d" font-size="14" font-family="Manrope, Arial, sans-serif" font-weight="700">ORLANDO</text>
+    <text x="180" y="172" text-anchor="middle" fill="#f4d98d" font-size="14" font-family="Manrope, Arial, sans-serif" font-weight="700">QAZAQTARY</text>
+  </g>
+</svg>

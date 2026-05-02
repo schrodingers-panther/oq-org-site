@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 300" role="img" aria-labelledby="title desc">
+  <title id="title">Black cap back</title>
+  <desc id="desc">Back view of black 2026 cap.</desc>
+  <rect width="360" height="300" fill="#f8f1de"/>
+  <g transform="translate(48 30)">
+    <path d="M36 150c14-82 62-118 132-118s118 36 132 118v58H36z" fill="#161616"/>
+    <path d="M134 132h68v44c0 18-12 30-34 30s-34-12-34-30z" fill="#f8f1de"/>
+    <rect x="146" y="144" width="44" height="14" rx="6" fill="#161616"/>
+    <text x="168" y="98" text-anchor="middle" fill="#d6a93d" font-size="34" font-family="Manrope, Arial, sans-serif" font-weight="800">2026</text>
+  </g>
+</svg>

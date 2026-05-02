@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 340" role="img" aria-labelledby="title desc">
+  <title id="title">Design 3 board</title>
+  <desc id="desc">Black tee front and back pair for design three.</desc>
+  <rect width="620" height="340" fill="#f8f1de"/>
+  <g transform="translate(78 34)">
+    <path d="M52 24h90l22 24 34 10-18 48-26-10v188H60V96L34 106 16 58l34-10z" fill="#161616"/>
+    <text x="108" y="146" text-anchor="middle" fill="#d6a93d" font-size="54" font-family="Cormorant Garamond, Georgia, serif" font-weight="700">OQ</text>
+  </g>
+  <g transform="translate(340 34)">
+    <path d="M52 24h90l22 24 34 10-18 48-26-10v188H60V96L34 106 16 58l34-10z" fill="#161616"/>
+    <text x="108" y="118" text-anchor="middle" fill="#ffffff" font-size="22" font-family="Manrope, Arial, sans-serif" font-weight="800">ORLANDO</text>
+    <text x="108" y="152" text-anchor="middle" fill="#d6a93d" font-size="30" font-family="Manrope, Arial, sans-serif" font-weight="800">QAZAQTARY</text>
+    <text x="108" y="190" text-anchor="middle" fill="#f2d587" font-size="22" font-family="Manrope, Arial, sans-serif" font-weight="800">2026</text>
+  </g>
+</svg>

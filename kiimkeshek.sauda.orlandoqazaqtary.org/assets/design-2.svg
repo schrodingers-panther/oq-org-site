@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 340" role="img" aria-labelledby="title desc">
+  <title id="title">Design 2 board</title>
+  <desc id="desc">Green tee front and back pair for design two.</desc>
+  <rect width="620" height="340" fill="#f8f1de"/>
+  <g transform="translate(78 34)">
+    <path d="M52 24h90l22 24 34 10-18 48-26-10v188H60V96L34 106 16 58l34-10z" fill="#0f6a51"/>
+    <circle cx="108" cy="132" r="34" fill="none" stroke="#f2d587" stroke-width="6"/>
+    <path d="M108 92v80M68 132h80M80 104l56 56M136 104l-56 56" stroke="#f2d587" stroke-width="4"/>
+    <text x="108" y="202" text-anchor="middle" fill="#f2d587" font-size="22" font-family="Manrope, Arial, sans-serif" font-weight="800">QAZAQ</text>
+  </g>
+  <g transform="translate(340 34)">
+    <path d="M52 24h90l22 24 34 10-18 48-26-10v188H60V96L34 106 16 58l34-10z" fill="#0f6a51"/>
+    <text x="108" y="118" text-anchor="middle" fill="#ffffff" font-size="24" font-family="Manrope, Arial, sans-serif" font-weight="800">QAZAQ</text>
+    <text x="108" y="148" text-anchor="middle" fill="#f2d587" font-size="28" font-family="Manrope, Arial, sans-serif" font-weight="800">BASQOSU</text>
+    <text x="108" y="186" text-anchor="middle" fill="#f2d587" font-size="22" font-family="Manrope, Arial, sans-serif" font-weight="800">2026</text>
+  </g>
+</svg>

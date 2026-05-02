@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 340" role="img" aria-labelledby="title desc">
+  <title id="title">Design 1 board</title>
+  <desc id="desc">White tee front and back pair for design one.</desc>
+  <rect width="620" height="340" fill="#f8f1de"/>
+  <g transform="translate(78 34)">
+    <path d="M52 24h90l22 24 34 10-18 48-26-10v188H60V96L34 106 16 58l34-10z" fill="#fffefb" stroke="#e8dec5" stroke-width="3"/>
+    <text x="108" y="136" text-anchor="middle" fill="#0b4f3f" font-size="28" font-family="Manrope, Arial, sans-serif" font-weight="800">ORLANDO</text>
+    <text x="108" y="170" text-anchor="middle" fill="#d6a93d" font-size="34" font-family="Manrope, Arial, sans-serif" font-weight="800">QAZAQTARY</text>
+  </g>
+  <g transform="translate(340 34)">
+    <path d="M52 24h90l22 24 34 10-18 48-26-10v188H60V96L34 106 16 58l34-10z" fill="#fffefb" stroke="#e8dec5" stroke-width="3"/>
+    <text x="108" y="116" text-anchor="middle" fill="#d6a93d" font-size="18" font-family="Manrope, Arial, sans-serif" font-weight="800">NAURYZ VIBES</text>
+    <text x="108" y="154" text-anchor="middle" fill="#0b4f3f" font-size="30" font-family="Manrope, Arial, sans-serif" font-weight="800">2026</text>
+  </g>
+</svg>
